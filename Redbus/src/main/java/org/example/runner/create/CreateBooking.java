@@ -1,4 +1,4 @@
-package org.example.runner;
+package org.example.runner.create;
 
 
 
@@ -12,8 +12,8 @@ public class CreateBooking {
 
         BookingEntity entity = new BookingEntity();
 
-        entity.setName("Akshay");
-        entity.setEmail("akshay@gmail.com");
+        entity.setName("pprateek");
+        entity.setEmail("prateerk@gmail.com");
         entity.setPhoneNumber(9632336136L);
         entity.setBookingDate("23-08-2026");
         entity.setNumberOfPeople(3);

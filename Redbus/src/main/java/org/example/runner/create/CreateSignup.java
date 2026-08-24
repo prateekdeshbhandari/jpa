@@ -1,4 +1,4 @@
-package org.example.runner;
+package org.example.runner.create;
 
 
 import org.example.entity.SingUpEntity;
@@ -10,9 +10,10 @@ public class CreateSignup {
     public static void main(String[] args) {
 
         SingUpEntity entity = new SingUpEntity();
-
-        entity.setEmail("akshay@gmail.com");
-        entity.setName("Akshay");
+entity.setId(1);
+entity.setPassword("123prateek");
+        entity.setEmail("prateek@gmail.com");
+        entity.setName("prateek");
 
 
         EntityManagerFactory emf = null;

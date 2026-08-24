@@ -13,8 +13,7 @@ public class SignInEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+
 
     @Column(name = "email_Id")
     private String email;

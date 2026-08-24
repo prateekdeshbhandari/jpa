@@ -1,4 +1,4 @@
-package org.example.runner;
+package org.example.runner.create;
 
 import org.example.entity.SignInEntity;
 
@@ -8,8 +8,8 @@ public class CreateSignIn {
     public static void main(String[] args) {
         SignInEntity entity = new SignInEntity();
 
-        entity.setEmail("akshay@gmail.com");
-        entity.setPassword("Akshay@123");
+        entity.setEmail("prateek@gmail.com");
+        entity.setPassword("prateek@123");
 
         EntityManagerFactory emf = null;
         EntityManager em = null;

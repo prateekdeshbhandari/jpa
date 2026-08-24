@@ -1,20 +1,17 @@
-package org.example.runner;
+package org.example.runner.create;
 
-
-import org.example.entity.PaymentEntity;
+import org.example.entity.CustomerEntity;
 
 import javax.persistence.*;
 
-public class CreatePayment {
+public class CreateCustomer {
     public static void main(String[] args) {
-        PaymentEntity entity = new PaymentEntity();
+        CustomerEntity entity = new CustomerEntity();
 
-        entity.setBookingId(101);
-        entity.setName("Akshay");
-        entity.setEmail("akshay@gmail.com");
-        entity.setAmount(850.00);
-        entity.setPaymentMethod("UPI");
-        entity.setPaymentStatus("SUCCESS");
+        entity.setCustomerName("prateek");
+        entity.setEmail("prateek@gmail.com");
+        entity.setPhoneNumber(9632336136L);
+        entity.setAddress("Bangalore");
 
         EntityManagerFactory emf = null;
         EntityManager em = null;
@@ -23,15 +20,10 @@ public class CreatePayment {
         try {
 
             emf = Persistence.createEntityManagerFactory("redbus");// load, connect
-
             em = emf.createEntityManager();// DML, DQL
-
             et = em.getTransaction();// TCL
-
             et.begin();// begin transaction
-
             em.persist(entity);// insert
-
             et.commit();// commit transaction
 
             System.out.println("Data saved successfully: " + entity);
@@ -42,12 +34,11 @@ public class CreatePayment {
                 et.rollback();
             }
 
-            e.printStackTrace();
-
         } finally {
 
             if (em != null) {
-                em.close(); }
+                em.close();
+            }
 
             if (emf != null) {
                 emf.close();
