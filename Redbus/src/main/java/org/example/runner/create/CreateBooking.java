@@ -18,9 +18,9 @@ public class CreateBooking {
         entity.setBookingDate("23-08-2026");
         entity.setNumberOfPeople(3);
 
-        EntityManagerFactory emf = null;
-        EntityManager em = null;
-        EntityTransaction et = null;
+        EntityManagerFactory emf = null;//load persistence.xml
+        EntityManager em = null;//create connection,CRUD operations
+        EntityTransaction et = null;//transaction
 
         try {
 
