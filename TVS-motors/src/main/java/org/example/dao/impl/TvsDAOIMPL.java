@@ -98,10 +98,15 @@ public class TvsDAOIMPL implements TvsDAO {
     public TvsMotoresEntity getTvsMotoresEntity(Integer id) {
 TvsMotoresEntity entity = null;
         EntityManagerFactory emf = null;
-
+EntityManager em = null;
 
         try {
-            emf = (EntityManagerFactory) Persistence.createEntityManagerFactory("tvs").createEntityManager().find(TvsMotoresEntity.class, id);
+            emf = Persistence.createEntityManagerFactory("tvs");
+
+            em = emf.createEntityManager();
+
+            entity = em.find(TvsMotoresEntity.class, id);
+
 
 
 

@@ -1,0 +1,39 @@
+package com.xworkz.Library;
+
+import com.xworkz.Library.dto.LibraryDTO;
+import com.xworkz.Library.service.LibraryService;
+import com.xworkz.Library.service.impl.LibraryServiceImpl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LibraryRunner {
+
+    public static void main(String[] args) {
+
+        LibraryDTO dto = new LibraryDTO(1, "Java Complete Reference", "Herbert Schildt", "Programming", 850.00);
+
+        LibraryService service = new LibraryServiceImpl();
+
+        service.validateAndSave(dto);
+
+        System.out.println("Data: " + dto);
+
+
+        List<LibraryDTO> libraryDTOs = new ArrayList<>();
+
+        libraryDTOs.add(new LibraryDTO(1, "Java Complete Reference", "Herbert Schildt", "Programming", 850.00));
+        libraryDTOs.add(new LibraryDTO(2, "Python Basics", "John Smith", "Programming", 700.00));
+        libraryDTOs.add(new LibraryDTO(3, "Data Structures", "Robert Lafore", "Programming", 900.00));
+        libraryDTOs.add(new LibraryDTO(4, "Clean Code", "Robert Martin", "Software", 1200.00));
+        libraryDTOs.add(new LibraryDTO(5, "Database System", "Abraham Silberschatz", "Database", 1000.00));
+
+        service.validateAndSaves(libraryDTOs);
+
+
+        LibraryDTO readById = service.findReadSaveId(1);
+
+        System.out.println("Read by ID: " + readById);
+    }
+
+}

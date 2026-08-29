@@ -107,7 +107,7 @@ public class TvsServiceImpl implements TvsService {
 
             if (entity != null) {
 
-                dto = new TvsMotorsDto(dto.getId(),
+                dto = new TvsMotorsDto(entity.getId(),
                         entity.getModelName(),
                         entity.getBrand(),
                         entity.getCategory(),
