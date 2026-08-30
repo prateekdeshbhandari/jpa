@@ -21,7 +21,7 @@ public class TvsRunner {
         tvsMotorsDtos.add(new TvsMotorsDto(2, "Apache RTR 200", "TVS", "Bike", 150000.00));
         tvsMotorsDtos.add(new TvsMotorsDto(3, "Apache RTR 310", "TVS", "Bike", 240000.00));
         tvsMotorsDtos.add(new TvsMotorsDto(4, "Raider 125", "TVS", "Bike", 95000.00));
-        tvsMotorsDtos.add(new TvsMotorsDto(5, "Jupiter 125", "TVS", "Scooter", 90000.00));
+
         TvsService services = new TvsServiceImpl();
 
         service.validateAndSaves(tvsMotorsDtos);
