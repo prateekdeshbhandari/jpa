@@ -7,7 +7,9 @@ import com.xworkz.mobile.entity.MobileStoreEntity;
 import com.xworkz.mobile.service.MobileStoreService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MobileStoreServiceImpl implements MobileStoreService {
 
@@ -115,4 +117,27 @@ public class MobileStoreServiceImpl implements MobileStoreService {
 
             return dto;
         }
+    @Override
+    public List<MobileStoreDTO> readAllMobileStores() {
+
+        List<MobileStoreDTO> dtoList = Collections.emptyList();
+
+        MobileStoreDAO dao = new MobileStoreDAOImpl();
+
+        List<MobileStoreEntity> allEntities = dao.getAllMobileStores();
+
+        if (allEntities != null) {
+            dtoList = allEntities.stream()
+                    .map(entity -> new MobileStoreDTO(
+                            entity.getId(),
+                            entity.getMobileName(),
+                            entity.getBrand(),
+                            entity.getPrice(),
+                            entity.getColor()
+                    ))
+                    .collect(Collectors.toList());
+        }
+
+        return dtoList;
     }
+}

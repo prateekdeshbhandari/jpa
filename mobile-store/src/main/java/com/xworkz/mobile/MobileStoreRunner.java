@@ -32,5 +32,11 @@ public class MobileStoreRunner {
         MobileStoreDTO readById = service.findReadSaveId(1);
 
         System.out.println("Read by ID: " + readById);
+
+        List<MobileStoreDTO> allMobiles = service.readAllMobileStores();
+
+        System.out.println("All Mobile Stores:");
+
+        allMobiles.forEach(a-> System.out.println(a));
     }
 }

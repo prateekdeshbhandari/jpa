@@ -7,6 +7,7 @@ import com.xworkz.mobile.dao.MobileStoreDAO;
 import com.xworkz.mobile.entity.MobileStoreEntity;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 
 public class MobileStoreDAOImpl implements MobileStoreDAO {
@@ -142,5 +143,37 @@ public class MobileStoreDAOImpl implements MobileStoreDAO {
         }
 
         return entity;
+    }
+
+    @Override
+    public List<MobileStoreEntity> getAllMobileStores() {
+
+        List<MobileStoreEntity> entities = Collections.emptyList();
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("mobile");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("getAllMobileStores");
+
+            entities = query.getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+            if (emf != null) {
+                emf.close();
+            }
+        }
+
+        return entities;
     }
 }

@@ -13,6 +13,19 @@ import javax.persistence.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+// Select
+@NamedQuery(name = "getAllMobileStores", query = "select m from MobileStoreEntity m")
+@NamedQuery(name = "findMobileByName", query = "select m from MobileStoreEntity m where m.mobileName = :mobileName")
+@NamedQuery(name = "findMobileByBrand", query = "select m from MobileStoreEntity m where m.brand = :brand")
+@NamedQuery(name = "findMobileByPrice", query = "select m from MobileStoreEntity m where m.price = :price")
+@NamedQuery(name = "findMobileByColor", query = "select m from MobileStoreEntity m where m.color = :color")
+
+// Update
+@NamedQuery(name = "updateMobileName", query = "update MobileStoreEntity m set m.mobileName = :mobileName where m.id = :id")
+@NamedQuery(name = "updateMobilePrice", query = "update MobileStoreEntity m set m.price = :price where m.id = :id")
+
+// Delete
+@NamedQuery(name = "deleteMobile", query = "delete from MobileStoreEntity m where m.id = :id")
 public class MobileStoreEntity {
 
     @Id

@@ -11,5 +11,6 @@ public interface MobileStoreDAO {
     boolean savess(List<MobileStoreEntity> entities);
 
     MobileStoreEntity getMobileStoreEntity(Integer id);
+    List<MobileStoreEntity>getAllMobileStores();
 
 }

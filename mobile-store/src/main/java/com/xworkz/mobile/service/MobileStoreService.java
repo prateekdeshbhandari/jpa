@@ -10,5 +10,6 @@ public interface MobileStoreService {
     boolean validateAndSaves(List<MobileStoreDTO> dto);
 
     MobileStoreDTO findReadSaveId(Integer id);
+    List<MobileStoreDTO>readAllMobileStores();
 
 }
