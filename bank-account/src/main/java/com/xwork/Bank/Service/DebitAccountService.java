@@ -10,5 +10,6 @@ public interface DebitAccountService {
     boolean validateAndSaves(List<DebitAccountDTO> dto);
 
     DebitAccountDTO findReadSaveId(Integer id);
+    List<DebitAccountDTO>readAllDebitAccounts();
 
 }

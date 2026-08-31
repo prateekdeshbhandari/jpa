@@ -10,5 +10,6 @@ public interface DebitAccountDAO {
     boolean savess(List<DebitAccountEntity> entities);
 
     DebitAccountEntity getDebitAccountEntity(Integer id);
+    List<DebitAccountEntity>getAllDebitAccounts();
 
 }

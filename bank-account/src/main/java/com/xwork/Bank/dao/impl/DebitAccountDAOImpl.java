@@ -4,6 +4,7 @@ import com.xwork.Bank.dao.DebitAccountDAO;
 import com.xwork.Bank.entity.DebitAccountEntity;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 
 public class DebitAccountDAOImpl implements DebitAccountDAO {
@@ -138,5 +139,35 @@ public class DebitAccountDAOImpl implements DebitAccountDAO {
         }
 
         return entity;
+    }
+
+    @Override
+    public List<DebitAccountEntity> getAllDebitAccounts() {
+
+        List<DebitAccountEntity> entities = Collections.emptyList();
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("bank");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("getAllDebitAccounts");
+
+            entities = query.getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+            if (emf != null) {
+                emf.close();
+            }
+        }
+
+        return entities;
     }
 }

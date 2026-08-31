@@ -7,7 +7,9 @@ import com.xwork.Bank.dto.DebitAccountDTO;
 import com.xwork.Bank.entity.DebitAccountEntity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DebitAccountServiceImpl implements DebitAccountService {
     @Override
@@ -111,5 +113,28 @@ public class DebitAccountServiceImpl implements DebitAccountService {
         }
 
         return dto;
+    }
+    @Override
+    public List<DebitAccountDTO> readAllDebitAccounts() {
+
+        List<DebitAccountDTO> dtoList = Collections.emptyList();
+
+        DebitAccountDAO dao = new DebitAccountDAOImpl();
+
+        List<DebitAccountEntity> allEntities = dao.getAllDebitAccounts();
+
+        if (allEntities != null) {
+            dtoList = allEntities.stream()
+                    .map(entity -> new DebitAccountDTO(
+                            entity.getId(),
+                            entity.getBankName(),
+                            entity.getBankName(),
+                            entity.getAccountNumber(),
+                            entity.getBalance()
+                    ))
+                    .collect(Collectors.toList());
+        }
+
+        return dtoList;
     }
 }

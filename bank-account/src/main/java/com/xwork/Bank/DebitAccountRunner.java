@@ -27,6 +27,11 @@ public class DebitAccountRunner {
         service.validateAndSaves(debitAccountDTOs);
         DebitAccountDTO readById = service.findReadSaveId(1);
         System.out.println("Read by ID: " + readById);
+        List<DebitAccountDTO> allAccounts = service.readAllDebitAccounts();
+
+        System.out.println("All Debit Accounts:");
+
+        allAccounts.forEach(a-> System.out.println(a));
     }
 }
 
