@@ -8,4 +8,5 @@ public interface TvsDAO {
     boolean save(TvsMotoresEntity entity);
     boolean savess(List<TvsMotoresEntity> entities );
     TvsMotoresEntity getTvsMotoresEntity(Integer id);
+    List<TvsMotoresEntity> getAllTvs();
 }

@@ -8,5 +8,6 @@ public interface TvsService {
     boolean validateAndSave(TvsMotorsDto dto);
     boolean validateAndSaves(List<TvsMotorsDto> dto);
     TvsMotorsDto findReadSaveId(Integer Id);
+    List<TvsMotorsDto> readAllTvs();
 
 }

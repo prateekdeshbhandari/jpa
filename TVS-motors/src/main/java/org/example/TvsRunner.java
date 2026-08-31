@@ -29,5 +29,10 @@ public class TvsRunner {
 TvsMotorsDto readById = service.findReadSaveId(1);
 System.out.println("Read by ID: " + readById);
 
+        List<TvsMotorsDto> allTvs = service.readAllTvs();
+
+        System.out.println("All TVS Motors:");
+
+        allTvs.forEach(aa->System.out.println(aa));
     }
 }

@@ -7,6 +7,7 @@ import org.example.entity.TvsMotoresEntity;
 import org.example.service.TvsService;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,7 +52,7 @@ public class TvsServiceImpl implements TvsService {
     public boolean validateAndSaves(List<TvsMotorsDto> dto) {
         boolean isSeved = false;
 
-        if(dto!=null) {
+        if (dto != null) {
             List<TvsMotoresEntity> entities = new ArrayList<>();
             for (TvsMotorsDto dtoss : dto) {
                 TvsMotoresEntity entity = new TvsMotoresEntity();
@@ -71,24 +72,21 @@ public class TvsServiceImpl implements TvsService {
 //                            dtoo.getPrice()
 //                    ))  .collect(toList());
 
-                TvsDAO dao = new TvsDAOIMPL();
-                boolean saveds = dao.savess(entities);
+            TvsDAO dao = new TvsDAOIMPL();
+            boolean saveds = dao.savess(entities);
 
-                if (saveds) {
-                    isSeved = true;
-                    System.out.println("Data is saved successfully");
-                } else {
-                    isSeved = false;
-                    System.out.println("Data is not saved ");
-                }
+            if (saveds) {
                 isSeved = true;
+                System.out.println("Data is saved successfully");
+            } else {
+                isSeved = false;
+                System.out.println("Data is not saved ");
             }
+            isSeved = true;
+        } else {
 
-        else{
-
-                System.out.println("Data is empty ");
-            }
-
+            System.out.println("Data is empty ");
+        }
 
 
         return isSeved;
@@ -118,6 +116,31 @@ public class TvsServiceImpl implements TvsService {
 
         return dto;
     }
+
+    @Override
+    public List<TvsMotorsDto> readAllTvs() {
+
+        List<TvsMotorsDto> dtoList = Collections.emptyList();
+
+        TvsDAO dao = new TvsDAOIMPL();
+
+        List<TvsMotoresEntity> allEntities = dao.getAllTvs();
+
+
+        if (allEntities != null) {
+            dtoList = allEntities.stream()
+                    .map(entity -> new TvsMotorsDto(
+                            entity.getId(),
+                            entity.getModelName(),
+                            entity.getBrand(),
+                            entity.getCategory(),
+                            entity.getPrice()
+                    ))
+                    .collect(Collectors.toList());
+        }
+
+        return dtoList;
     }
+}
 
 

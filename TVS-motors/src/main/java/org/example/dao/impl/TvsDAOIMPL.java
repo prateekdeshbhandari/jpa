@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 
 public class TvsDAOIMPL implements TvsDAO {
@@ -120,6 +121,38 @@ EntityManager em = null;
         }
 
         return entity;
+    }
+
+    @Override
+    public List<TvsMotoresEntity> getAllTvs() {
+
+        List<TvsMotoresEntity> entities = Collections.emptyList();
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("tvs");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("getAllTvs");
+
+            entities = query.getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+            if (emf != null) {
+                emf.close();
+            }
+        }
+
+        return entities;
     }
 }
 
