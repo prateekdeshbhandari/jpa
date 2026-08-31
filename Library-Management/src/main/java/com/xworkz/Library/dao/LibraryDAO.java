@@ -11,5 +11,7 @@ public interface LibraryDAO {
     boolean savess(List<LibraryEntity> entities);
 
     LibraryEntity getLibraryEntity(Integer id);
+
+    List<LibraryEntity> getAllLibraryBooks();
 }
 

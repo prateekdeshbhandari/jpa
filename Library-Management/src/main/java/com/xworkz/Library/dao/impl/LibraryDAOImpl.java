@@ -4,6 +4,7 @@ import com.xworkz.Library.dao.LibraryDAO;
 import com.xworkz.Library.entity.LibraryEntity;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 
 public class LibraryDAOImpl implements LibraryDAO {
@@ -135,5 +136,27 @@ public class LibraryDAOImpl implements LibraryDAO {
         }
 
         return entity;
+    }
+
+    @Override
+    public List<LibraryEntity> getAllLibraryBooks() {
+        List<LibraryEntity>entities= Collections.emptyList();
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("library");
+            em = emf.createEntityManager();
+            Query query = em.createNamedQuery("getAllLibraryBooks");
+
+            entities = query.getResultList();
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+
+
+
+
+        return entities;
     }
 }

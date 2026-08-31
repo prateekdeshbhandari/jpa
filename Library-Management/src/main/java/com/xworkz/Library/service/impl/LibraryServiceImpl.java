@@ -7,7 +7,10 @@ import com.xworkz.Library.entity.LibraryEntity;
 import com.xworkz.Library.service.LibraryService;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LibraryServiceImpl implements LibraryService {
     @Override
@@ -107,4 +110,27 @@ public class LibraryServiceImpl implements LibraryService {
         return dto;
     }
 
+
+    @Override
+    public List<LibraryDTO> readAllLibraryBooks() {
+
+        List<LibraryDTO> dtoList = Collections.emptyList();
+
+        LibraryDAO dao = new LibraryDAOImpl();
+
+        List<LibraryEntity> allEntities = dao.getAllLibraryBooks();
+
+        if (allEntities != null) {
+            dtoList = allEntities.stream()
+                    .map(entity -> new LibraryDTO(entity.getId(),
+                            entity.getBookName(),
+                            entity.getAuthorName(),
+                            entity.getCategory(),
+                            entity.getPrice()
+                    ))
+                    .collect(Collectors.toList());
+        }
+
+        return dtoList;
+    }
 }

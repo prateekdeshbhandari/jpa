@@ -11,5 +11,6 @@ public interface LibraryService {
     boolean validateAndSaves(List<LibraryDTO> dto);
 
     LibraryDTO findReadSaveId(Integer id);
-
+    
+List<LibraryDTO>readAllLibraryBooks();
 }

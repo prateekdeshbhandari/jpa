@@ -13,6 +13,19 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "library")
+// Select
+@NamedQuery(name = "getAllLibraryBooks", query = "select l from LibraryEntity l")
+@NamedQuery(name = "findLibraryBookByName", query = "select l from LibraryEntity l where l.bookName = :bookName")
+@NamedQuery(name = "findLibraryBookByAuthor", query = "select l from LibraryEntity l where l.authorName = :authorName")
+@NamedQuery(name = "findLibraryBookByCategory", query = "select l from LibraryEntity l where l.category = :category")
+@NamedQuery(name = "findLibraryBookByPrice", query = "select l from LibraryEntity l where l.price = :price")
+
+// Update
+@NamedQuery(name = "updateLibraryBookName", query = "update LibraryEntity l set l.bookName = :bookName where l.id = :id")
+@NamedQuery(name = "updateLibraryBookPrice", query = "update LibraryEntity l set l.price = :price where l.id = :id")
+
+// Delete
+@NamedQuery(name = "deleteLibraryBook", query = "delete from LibraryEntity l where l.id = :id")
 public class LibraryEntity {
 
     @Id

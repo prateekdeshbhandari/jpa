@@ -13,4 +13,10 @@ public class LibraryDTO {
     private String authorName;
     private String category;
     private Double price;
+
+    public LibraryDTO(String bookName, String authorName, String category, Double price) {
+    }
+
+
+
 }

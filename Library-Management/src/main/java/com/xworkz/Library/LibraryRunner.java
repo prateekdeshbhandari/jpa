@@ -34,6 +34,9 @@ public class LibraryRunner {
         LibraryDTO readById = service.findReadSaveId(1);
 
         System.out.println("Read by ID: " + readById);
+
+        List<LibraryDTO> allLibraryBooks = service.readAllLibraryBooks();
+        allLibraryBooks.forEach(a-> System.out.println(a));
     }
 
 }
