@@ -7,7 +7,9 @@ import org.example.dto.DocterDTO;
 import org.example.service.DocterService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DocterServiceImpl implements DocterService {
     @Override
@@ -110,5 +112,28 @@ public class DocterServiceImpl implements DocterService {
         }
 
         return dto;
+    }
+    @Override
+    public List<DocterDTO> readAllDocters() {
+
+        List<DocterDTO> dtoList = Collections.emptyList();
+
+        DocterDAO dao = new DocterDAOImpl();
+
+        List<DocterEntity> allEntities = dao.getAllDocters();
+
+        if (allEntities != null) {
+            dtoList = allEntities.stream()
+                    .map(entity -> new DocterDTO(
+                            entity.getId(),
+                            entity.getName(),
+                            entity.getSpecialization(),
+                            entity.getHospitalName(),
+                            entity.getPhoneNumber()
+                    ))
+                    .collect(Collectors.toList());
+        }
+
+        return dtoList;
     }
 }

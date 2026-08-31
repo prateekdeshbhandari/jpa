@@ -4,6 +4,7 @@ import org.example.Entity.DocterEntity;
 import org.example.dao.DocterDAO;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 
 public class DocterDAOImpl implements DocterDAO {
@@ -145,5 +146,38 @@ public class DocterDAOImpl implements DocterDAO {
         }
 
         return entity;
+    }
+
+
+    @Override
+    public List<DocterEntity> getAllDocters() {
+
+        List<DocterEntity> entities = Collections.emptyList();
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("docter");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("getAllDocters");
+
+            entities = query.getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+            if (emf != null) {
+                emf.close();
+            }
+        }
+
+        return entities;
     }
 }

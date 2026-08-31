@@ -30,6 +30,11 @@ public class DocterRunner {
 
         DocterDTO readById = services.findReadSaveId(1);
         System.out.println("Read by ID: " + readById);
+        List<DocterDTO> allDoctors = services.readAllDocters();
+
+        System.out.println("All Doctors:");
+
+        allDoctors.forEach(a-> System.out.println(a));
 
     }
 }

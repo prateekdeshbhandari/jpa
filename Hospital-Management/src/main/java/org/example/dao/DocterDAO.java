@@ -11,4 +11,5 @@ public interface DocterDAO {
     boolean savess(List<DocterEntity> entities);
 
     DocterEntity getDocterEntity(Integer id);
+    List<DocterEntity>getAllDocters();
 }

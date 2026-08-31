@@ -127,8 +127,7 @@ public class LibraryServiceImpl implements LibraryService {
                             entity.getAuthorName(),
                             entity.getCategory(),
                             entity.getPrice()
-                    ))
-                    .collect(Collectors.toList());
+                    )).collect(Collectors.toList());
         }
 
         return dtoList;

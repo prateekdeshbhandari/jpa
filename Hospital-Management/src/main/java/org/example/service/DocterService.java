@@ -10,5 +10,6 @@ public interface DocterService {
     boolean validateAndSaves(List<DocterDTO> dto);
 
     DocterDTO findReadSaveId(Integer id);
+    List<DocterDTO>readAllDocters();
 }
 
