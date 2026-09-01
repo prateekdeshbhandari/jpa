@@ -13,4 +13,15 @@ public interface MobileStoreDAO {
     MobileStoreEntity getMobileStoreEntity(Integer id);
     List<MobileStoreEntity>getAllMobileStores();
 
+
+
+    MobileStoreEntity getMobileStoreEntityByBrand(String brand);
+
+    MobileStoreEntity getMobileStoreEntityByIdAndMobileName(int id, String mobileNam);
+
+    List<MobileStoreEntity> getAllMobileStoresByIdAndColor(int id, String color);
+
+    List<MobileStoreEntity> getAllMobileStoresByPriceAndBrand(double price, String brand);
 }
+
+

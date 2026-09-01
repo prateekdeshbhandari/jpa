@@ -15,10 +15,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 // Select
 @NamedQuery(name = "getAllMobileStores", query = "select m from MobileStoreEntity m")
-@NamedQuery(name = "findMobileByName", query = "select m from MobileStoreEntity m where m.mobileName = :mobileName")
-@NamedQuery(name = "findMobileByBrand", query = "select m from MobileStoreEntity m where m.brand = :brand")
-@NamedQuery(name = "findMobileByPrice", query = "select m from MobileStoreEntity m where m.price = :price")
-@NamedQuery(name = "findMobileByColor", query = "select m from MobileStoreEntity m where m.color = :color")
+@NamedQuery(name = "findMobileStoreByBrand", query = "select m from MobileStoreEntity m where m.brand = :brand")
+
+@NamedQuery(name = "findMobileStoreByIdAndMobileName", query = "select m from MobileStoreEntity m where m.id = :id and m.mobileName = :mobileName")
+
+@NamedQuery(name = "findMobileStoreByIdAndColor", query = "select m from MobileStoreEntity m where m.id = :id and m.color = :color")
+
+@NamedQuery(name = "findMobileStoreByPriceAndBrand", query = "select m from MobileStoreEntity m where m.price = :price and m.brand = :brand")
 
 // Update
 @NamedQuery(name = "updateMobileName", query = "update MobileStoreEntity m set m.mobileName = :mobileName where m.id = :id")

@@ -140,4 +140,115 @@ public class MobileStoreServiceImpl implements MobileStoreService {
 
         return dtoList;
     }
+
+    @Override
+    public MobileStoreDTO findReadSaveByBrand(String brand) {
+
+        MobileStoreDTO dto = null;
+
+        if (brand != null) {
+
+            MobileStoreDAO dao = new MobileStoreDAOImpl();
+
+            MobileStoreEntity entity =
+                    dao.getMobileStoreEntityByBrand(brand);
+
+            if (entity != null) {
+
+                dto = new MobileStoreDTO(
+                        entity.getId(),
+                        entity.getMobileName(),
+                        entity.getBrand(),
+                        entity.getPrice(),
+                        entity.getColor()
+                );
+            }
+        }
+
+        return dto;
+    }
+
+    @Override
+    public MobileStoreDTO findReadSaveTwoParameter(
+            int id,
+            String mobileName) {
+
+        MobileStoreDTO dto = null;
+
+        if (mobileName != null) {
+
+            MobileStoreDAO dao = new MobileStoreDAOImpl();
+
+            MobileStoreEntity entity = dao.getMobileStoreEntityByIdAndMobileName(id, mobileName);
+
+            if (entity != null) {
+
+                dto = new MobileStoreDTO(
+                        entity.getId(),
+                        entity.getMobileName(),
+                        entity.getBrand(),
+                        entity.getPrice(),
+                        entity.getColor()
+                );
+            }
+        }
+
+        return dto;
+    }
+
+    @Override
+    public List<MobileStoreDTO> findAllMobileStoreTwoParameter(
+            int id,
+            String color) {
+
+        List<MobileStoreDTO> dtoList =
+                Collections.emptyList();
+
+        MobileStoreDAO dao = new MobileStoreDAOImpl();
+
+        List<MobileStoreEntity> allEntities = dao.getAllMobileStoresByIdAndColor(id, color);
+
+        if (color != null) {
+
+            dtoList = allEntities.stream()
+                    .map(entity -> new MobileStoreDTO(
+                            entity.getId(),
+                            entity.getMobileName(),
+                            entity.getBrand(),
+                            entity.getPrice(),
+                            entity.getColor()
+                    ))
+                    .collect(Collectors.toList());
+        }
+
+        return dtoList;
+    }
+
+    @Override
+    public List<MobileStoreDTO> findAllMobileStoreTwoParameters(
+            double price,
+            String brand) {
+
+        List<MobileStoreDTO> dtoList =
+                Collections.emptyList();
+
+        MobileStoreDAO dao = new MobileStoreDAOImpl();
+
+        List<MobileStoreEntity> allEntities = dao.getAllMobileStoresByPriceAndBrand(price, brand);
+
+        if (brand != null) {
+
+            dtoList = allEntities.stream()
+                    .map(entity -> new MobileStoreDTO(
+                            entity.getId(),
+                            entity.getMobileName(),
+                            entity.getBrand(),
+                            entity.getPrice(),
+                            entity.getColor()
+                    ))
+                    .collect(Collectors.toList());
+        }
+
+        return dtoList;
+    }
 }

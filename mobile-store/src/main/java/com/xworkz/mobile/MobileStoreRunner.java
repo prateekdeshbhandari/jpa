@@ -38,5 +38,32 @@ public class MobileStoreRunner {
         System.out.println("All Mobile Stores:");
 
         allMobiles.forEach(a-> System.out.println(a));
+
+        MobileStoreDTO mobileByBrand =
+                service.findReadSaveByBrand("Apple");
+
+        System.out.println(
+                "Mobile By Brand: " + mobileByBrand
+        );
+
+
+
+
+        MobileStoreDTO mobileByIdAndName = service.findReadSaveTwoParameter(1, "iPhone 15");
+
+        System.out.println("Mobile By ID and Name: " + mobileByIdAndName);
+
+
+
+
+        List<MobileStoreDTO> mobilesByIdAndColor = service.findAllMobileStoreTwoParameter(1, "Black");
+        mobilesByIdAndColor.forEach(a -> System.out.println(a));
+
+
+
+
+        List<MobileStoreDTO> mobilesByPriceAndBrand = service.findAllMobileStoreTwoParameters(74999.00, "Samsung");
+
+        mobilesByPriceAndBrand.forEach(a -> System.out.println(a));
     }
 }

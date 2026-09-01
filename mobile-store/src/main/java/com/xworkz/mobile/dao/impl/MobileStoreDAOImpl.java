@@ -176,4 +176,117 @@ public class MobileStoreDAOImpl implements MobileStoreDAO {
 
         return entities;
     }
+
+    @Override
+    public MobileStoreEntity getMobileStoreEntityByBrand(String brand) {
+
+        MobileStoreEntity entity = null;
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("mobile");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findMobileStoreByBrand");
+
+            query.setParameter("brand", brand);
+
+
+
+            Object ref = query.getSingleResult();
+
+            entity = (MobileStoreEntity) ref;
+
+            System.out.println("" + ref);
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entity;
+    }
+
+
+    @Override
+    public MobileStoreEntity getMobileStoreEntityByIdAndMobileName(int id, String mobileName) {
+
+        MobileStoreEntity entity = null;
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("mobile");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findMobileStoreByIdAndMobileName");
+
+            query.setParameter("id", id);
+            query.setParameter("mobileName", mobileName);
+
+
+            Object ref = query.getSingleResult();
+
+            entity = (MobileStoreEntity) ref;
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entity;
+    }
+
+
+    @Override
+    public List<MobileStoreEntity> getAllMobileStoresByIdAndColor(int id, String color) {
+
+        List<MobileStoreEntity> entities = Collections.emptyList();
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("mobile");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findMobileStoreByIdAndColor");
+
+            query.setParameter("id", id);
+            query.setParameter("color", color);
+
+            entities = query.getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entities;
+    }
+
+
+    @Override
+    public List<MobileStoreEntity> getAllMobileStoresByPriceAndBrand(double price, String brand) {
+
+        List<MobileStoreEntity> entities = Collections.emptyList();
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("mobile");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findMobileStoreByPriceAndBrand");
+
+            query.setParameter("price", price);
+            query.setParameter("brand", brand);
+
+            entities = query.getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entities;
+    }
 }

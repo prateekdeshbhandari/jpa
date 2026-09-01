@@ -11,5 +11,13 @@ public interface MobileStoreService {
 
     MobileStoreDTO findReadSaveId(Integer id);
     List<MobileStoreDTO>readAllMobileStores();
+    MobileStoreDTO findReadSaveByBrand(String brand);
 
+    MobileStoreDTO findReadSaveTwoParameter(int id, String mobileName);
+
+    List<MobileStoreDTO> findAllMobileStoreTwoParameter(int id, String color);
+
+    List<MobileStoreDTO> findAllMobileStoreTwoParameters(double price, String brand);
 }
+
+
