@@ -132,4 +132,74 @@ public class LibraryServiceImpl implements LibraryService {
 
         return dtoList;
     }
+
+    @Override
+    public LibraryDTO findReadSaveAuthorName(String authorName) {
+        LibraryDTO dtos = null;
+
+        if (authorName != null) {
+
+            LibraryDAO dao = new LibraryDAOImpl();
+
+            LibraryEntity entity = dao.getLibraryEntitys(authorName);
+
+            if (entity != null) {
+
+                dtos = new LibraryDTO(
+                        entity.getId(),
+                        entity.getBookName(),
+                        entity.getAuthorName(),
+                        entity.getCategory(),
+                        entity.getPrice());
+            }
+        }
+
+        return dtos;
+    }
+
+    @Override
+    public LibraryDTO findReadSaveTwoParametter(Integer id, String bookName) {
+        LibraryDTO dtos = null;
+
+        if (bookName!=null) {
+
+            LibraryDAO dao = new LibraryDAOImpl();
+
+            LibraryEntity entity = dao.getLibraryEntityss(id,bookName);
+
+            if (entity != null) {
+
+                dtos = new LibraryDTO(
+                        entity.getId(),
+                        entity.getBookName(),
+                        entity.getAuthorName(),
+                        entity.getCategory(),
+                        entity.getPrice());
+            }
+        }
+
+        return dtos;
+    }
+
+    @Override
+    public List<LibraryDTO> findAllLibrarytwoPrametter(Integer id, String category) {
+        List<LibraryDTO> dtoList = Collections.emptyList();
+
+        LibraryDAO dao = new LibraryDAOImpl();
+
+        List<LibraryEntity> allEntities = dao.getAllLibraryBooksss(id,category);
+
+        if (category != null) {
+            dtoList = allEntities.stream()
+                    .map(entity -> new LibraryDTO(entity.getId(),
+                            entity.getBookName(),
+                            entity.getAuthorName(),
+                            entity.getCategory(),
+                            entity.getPrice()
+                    )).collect(Collectors.toList());
+        }
+
+        return dtoList;
+    }
+
 }

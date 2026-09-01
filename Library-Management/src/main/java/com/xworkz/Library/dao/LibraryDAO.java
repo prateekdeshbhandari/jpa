@@ -13,5 +13,10 @@ public interface LibraryDAO {
     LibraryEntity getLibraryEntity(Integer id);
 
     List<LibraryEntity> getAllLibraryBooks();
+
+    LibraryEntity getLibraryEntitys(String authorName);
+    LibraryEntity getLibraryEntityss(Integer id,String bookName);
+
+    List<LibraryEntity> getAllLibraryBooksss(Integer id,String category);
 }
 

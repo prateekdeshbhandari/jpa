@@ -159,4 +159,87 @@ public class LibraryDAOImpl implements LibraryDAO {
 
         return entities;
     }
+
+    @Override
+    public LibraryEntity getLibraryEntitys(String authorName) {
+        LibraryEntity entitiess= null;
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("library");
+            em = emf.createEntityManager();
+            Query query = em.createNamedQuery("getAllLibraryBookss");
+
+            query.setParameter("AuthorName", authorName);
+
+            query.setMaxResults(1);
+            Object ref = query.getSingleResult();
+
+            entitiess = (LibraryEntity) ref;
+            System.out.println(""+ref);
+
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+
+
+
+
+        return entitiess;
+    }
+
+    @Override
+    public LibraryEntity getLibraryEntityss(Integer id, String bookName) {
+        LibraryEntity entitiess= null;
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("library");
+            em = emf.createEntityManager();
+            Query query = em.createNamedQuery("findLibraryBookByBookName");
+
+            query.setParameter("id",id);
+            query.setParameter("bookName",bookName);
+
+           query.setMaxResults(1);
+            Object ref = query.getSingleResult();
+
+
+
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+
+
+
+
+        return entitiess;
+    }
+
+    @Override
+    public List<LibraryEntity> getAllLibraryBooksss(Integer id,String category) {
+        List<LibraryEntity>entities= Collections.emptyList();
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("library");
+            em = emf.createEntityManager();
+            Query query = em.createNamedQuery("findLibraryBookByIdAndcategory");
+            query.setParameter("id", id);
+            query.setParameter("category", category);
+
+            entities = query.getResultList();
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+
+
+
+
+        return entities;
+    }
+
 }

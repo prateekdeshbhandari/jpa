@@ -13,4 +13,10 @@ public interface LibraryService {
     LibraryDTO findReadSaveId(Integer id);
     
 List<LibraryDTO>readAllLibraryBooks();
+
+LibraryDTO findReadSaveAuthorName(String authorName);
+
+LibraryDTO findReadSaveTwoParametter(Integer id,String bookName);
+
+List<LibraryDTO>findAllLibrarytwoPrametter(Integer id,String category);
 }

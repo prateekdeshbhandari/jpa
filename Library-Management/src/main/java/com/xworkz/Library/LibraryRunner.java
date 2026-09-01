@@ -31,12 +31,25 @@ public class LibraryRunner {
         service.validateAndSaves(libraryDTOs);
 
 
-        LibraryDTO readById = service.findReadSaveId(1);
+//        LibraryDTO readById = service.findReadSaveId(1);
+//
+//        System.out.println("Read by ID: " + readById);
 
-        System.out.println("Read by ID: " + readById);
+//        List<LibraryDTO> allLibraryBooks = service.readAllLibraryBooks();
+//        allLibraryBooks.forEach(a-> System.out.println(a));
 
-        List<LibraryDTO> allLibraryBooks = service.readAllLibraryBooks();
-        allLibraryBooks.forEach(a-> System.out.println(a));
+
+
+
+        LibraryDTO libraryDTO = service.findReadSaveAuthorName("Herbert Schildt");
+
+        System.out.println("Library DTO: " + libraryDTO);
+
+        LibraryDTO librardto=service.findReadSaveTwoParametter(1,"Java Complete Reference");
+        System.out.println("library dto"+librardto);
+
+      List<LibraryDTO>libraryDTOS=service.findAllLibrarytwoPrametter(1,"Programming");
+      libraryDTOS.forEach(a-> System.out.println(a));
     }
 
 }

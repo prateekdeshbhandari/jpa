@@ -15,11 +15,12 @@ import javax.persistence.*;
 @Table(name = "library")
 // Select
 @NamedQuery(name = "getAllLibraryBooks", query = "select l from LibraryEntity l")
-@NamedQuery(name = "findLibraryBookByName", query = "select l from LibraryEntity l where l.bookName = :bookName")
-@NamedQuery(name = "findLibraryBookByAuthor", query = "select l from LibraryEntity l where l.authorName = :authorName")
-@NamedQuery(name = "findLibraryBookByCategory", query = "select l from LibraryEntity l where l.category = :category")
-@NamedQuery(name = "findLibraryBookByPrice", query = "select l from LibraryEntity l where l.price = :price")
 
+@NamedQuery(name = "getAllLibraryBookss", query = "select l from LibraryEntity l where l.authorName = :AuthorName ")
+
+@NamedQuery(name = "findLibraryBookByBookName", query = "select l from LibraryEntity l where l.id = :id and l.bookName = :bookName"
+)
+@NamedQuery(name = "findLibraryBookByIdAndcategory", query = "select l from LibraryEntity l where l.id = :id and l.category = :category")
 // Update
 @NamedQuery(name = "updateLibraryBookName", query = "update LibraryEntity l set l.bookName = :bookName where l.id = :id")
 @NamedQuery(name = "updateLibraryBookPrice", query = "update LibraryEntity l set l.price = :price where l.id = :id")
