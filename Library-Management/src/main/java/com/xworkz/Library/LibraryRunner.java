@@ -50,6 +50,9 @@ public class LibraryRunner {
 
       List<LibraryDTO>libraryDTOS=service.findAllLibrarytwoPrametter(1,"Programming");
       libraryDTOS.forEach(a-> System.out.println(a));
+
+      List<LibraryDTO>libraryDTOss=service.findAllLibrarytwoPrametters( 700.00,"John Smith");
+      libraryDTOss.forEach(a-> System.out.println(a));
     }
 
 }

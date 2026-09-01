@@ -202,4 +202,25 @@ public class LibraryServiceImpl implements LibraryService {
         return dtoList;
     }
 
+    @Override
+    public List<LibraryDTO> findAllLibrarytwoPrametters(Double price, String authorName) {
+        List<LibraryDTO> dtoList = Collections.emptyList();
+
+        LibraryDAO dao = new LibraryDAOImpl();
+
+        List<LibraryEntity> allEntities = dao.getAllLibraryBookssss(price,authorName);
+
+        if (authorName != null) {
+            dtoList = allEntities.stream()
+                    .map(entity -> new LibraryDTO(entity.getId(),
+                            entity.getBookName(),
+                            entity.getAuthorName(),
+                            entity.getCategory(),
+                            entity.getPrice()
+                    )).collect(Collectors.toList());
+        }
+
+        return dtoList;
+    }
+
 }

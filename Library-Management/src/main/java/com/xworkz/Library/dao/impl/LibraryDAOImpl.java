@@ -205,6 +205,7 @@ public class LibraryDAOImpl implements LibraryDAO {
 
            query.setMaxResults(1);
             Object ref = query.getSingleResult();
+            entitiess=(LibraryEntity) ref;
 
 
 
@@ -241,5 +242,29 @@ public class LibraryDAOImpl implements LibraryDAO {
 
         return entities;
     }
+
+    @Override
+    public List<LibraryEntity> getAllLibraryBookssss(Double price, String authorName) {
+        List<LibraryEntity>entities= Collections.emptyList();
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("library");
+            em = emf.createEntityManager();
+            Query query = em.createNamedQuery("findLibraryBookByauthorName");
+            query.setParameter("price", price);
+            query.setParameter("authorName", authorName);
+            entities = query.getResultList();
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+
+
+
+
+        return entities;
+    }
+
 
 }

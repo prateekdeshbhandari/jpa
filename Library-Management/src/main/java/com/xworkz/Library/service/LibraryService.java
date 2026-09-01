@@ -11,6 +11,8 @@ public interface LibraryService {
     boolean validateAndSaves(List<LibraryDTO> dto);
 
     LibraryDTO findReadSaveId(Integer id);
+
+
     
 List<LibraryDTO>readAllLibraryBooks();
 
@@ -19,4 +21,6 @@ LibraryDTO findReadSaveAuthorName(String authorName);
 LibraryDTO findReadSaveTwoParametter(Integer id,String bookName);
 
 List<LibraryDTO>findAllLibrarytwoPrametter(Integer id,String category);
+
+List<LibraryDTO>findAllLibrarytwoPrametters(Double price,String authorName);
 }
