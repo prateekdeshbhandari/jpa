@@ -136,4 +136,106 @@ public class DocterServiceImpl implements DocterService {
 
         return dtoList;
     }
+
+    @Override
+    public DocterDTO findReadSaveByName(String name) {
+
+        DocterDTO dto = null;
+
+        if (name != null) {
+
+            DocterDAO dao = new DocterDAOImpl();
+
+            DocterEntity entity = dao.getDocterEntityByName(name);
+
+            if (entity != null) {
+
+                dto = new DocterDTO(
+                        entity.getId(),
+                        entity.getName(),
+                        entity.getSpecialization(),
+                        entity.getHospitalName(),
+                        entity.getPhoneNumber()
+                );
+            }
+        }
+
+        return dto;
+    }
+
+    @Override
+    public DocterDTO findReadSaveTwoParameter(int id, String name) {
+
+        DocterDTO dto = null;
+
+        if (name != null) {
+
+            DocterDAO dao = new DocterDAOImpl();
+
+            DocterEntity entity = dao.getDocterEntityByIdAndName(id, name);
+
+            if (entity != null) {
+
+                dto = new DocterDTO(
+                        entity.getId(),
+                        entity.getName(),
+                        entity.getSpecialization(),
+                        entity.getHospitalName(),
+                        entity.getPhoneNumber()
+                );
+            }
+        }
+
+        return dto;
+    }
+
+    @Override
+    public List<DocterDTO> findAllDocterTwoParameter(int id, String specialization) {
+
+        List<DocterDTO> dtoList = Collections.emptyList();
+
+        DocterDAO dao = new DocterDAOImpl();
+
+        List<DocterEntity> allEntities = dao.getAllDoctersByIdAndSpecialization(id, specialization);
+
+        if (specialization != null) {
+
+            dtoList = allEntities.stream()
+                    .map(entity -> new DocterDTO(
+                            entity.getId(),
+                            entity.getName(),
+                            entity.getSpecialization(),
+                            entity.getHospitalName(),
+                            entity.getPhoneNumber()
+                    ))
+                    .collect(Collectors.toList());
+        }
+
+        return dtoList;
+    }
+
+    @Override
+    public List<DocterDTO> findAllDocterTwoParameters(String hospitalName, String specialization) {
+
+        List<DocterDTO> dtoList = Collections.emptyList();
+
+        DocterDAO dao = new DocterDAOImpl();
+
+        List<DocterEntity> allEntities = dao.getAllDoctersByHospitalNameAndSpecialization(hospitalName, specialization);
+
+        if (hospitalName != null) {
+
+            dtoList = allEntities.stream()
+                    .map(entity -> new DocterDTO(
+                            entity.getId(),
+                            entity.getName(),
+                            entity.getSpecialization(),
+                            entity.getHospitalName(),
+                            entity.getPhoneNumber()
+                    ))
+                    .collect(Collectors.toList());
+        }
+
+        return dtoList;
+    }
 }

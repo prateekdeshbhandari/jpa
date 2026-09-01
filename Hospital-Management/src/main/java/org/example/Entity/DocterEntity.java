@@ -16,9 +16,12 @@ import javax.persistence.*;
 // Select
 @NamedQuery(name = "getAllDocters", query = "select d from DocterEntity d")
 @NamedQuery(name = "findDocterByName", query = "select d from DocterEntity d where d.name = :name")
-@NamedQuery(name = "findDocterBySpecialization", query = "select d from DocterEntity d where d.specialization = :specialization")
-@NamedQuery(name = "findDocterByHospitalName", query = "select d from DocterEntity d where d.hospitalName = :hospitalName")
-@NamedQuery(name = "findDocterByPhoneNumber", query = "select d from DocterEntity d where d.phoneNumber = :phoneNumber")
+
+@NamedQuery(name = "findDocterByIdAndName", query = "select d from DocterEntity d where d.id = :id and d.name = :name")
+
+@NamedQuery(name = "findDocterByIdAndSpecialization", query = "select d from DocterEntity d where d.id = :id and d.specialization = :specialization")
+
+@NamedQuery(name = "findDocterByHospitalNameAndSpecialization", query = "select d from DocterEntity d where d.hospitalName = :hospitalName and " + "d.specialization = :specialization")
 
 // Update
 @NamedQuery(name = "updateDocterName", query = "update DocterEntity d set d.name = :name where d.id = :id")

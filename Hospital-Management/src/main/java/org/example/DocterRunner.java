@@ -36,5 +36,21 @@ public class DocterRunner {
 
         allDoctors.forEach(a-> System.out.println(a));
 
+        DocterDTO doctorByName = services.findReadSaveByName("Rahul Sharma");
+        System.out.println("Doctor By Name: " + doctorByName);
+
+
+        DocterDTO doctorByIdAndName = services.findReadSaveTwoParameter(1, "Rahul Sharma");
+        System.out.println("Doctor By ID and Name: " + doctorByIdAndName);
+
+
+        List<DocterDTO> doctorsByIdAndSpecialization = services.findAllDocterTwoParameter(1, "Cardiologist");
+        doctorsByIdAndSpecialization.forEach(a -> System.out.println(a));
+
+
+        List<DocterDTO> doctorsByHospitalAndSpecialization = services.findAllDocterTwoParameters("Apollo Hospital", "Cardiologist");
+        doctorsByHospitalAndSpecialization.forEach(a -> System.out.println(a));
     }
 }
+
+

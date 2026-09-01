@@ -180,4 +180,112 @@ public class DocterDAOImpl implements DocterDAO {
 
         return entities;
     }
+
+    @Override
+    public DocterEntity getDocterEntityByName(String name) {
+
+        DocterEntity entity = null;
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("docter");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findDocterByName");
+
+            query.setParameter("name", name);
+
+            Object ref = query.getSingleResult();
+
+            entity = (DocterEntity) ref;
+
+            System.out.println("" + ref);
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entity;
+    }
+
+    @Override
+    public DocterEntity getDocterEntityByIdAndName(Integer id, String name) {
+
+        DocterEntity entity = null;
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("docter");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findDocterByIdAndName");
+
+            query.setParameter("id", id);
+            query.setParameter("name", name);
+
+            Object ref = query.getSingleResult();
+
+            entity = (DocterEntity) ref;
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entity;
+    }
+
+    @Override
+    public List<DocterEntity> getAllDoctersByIdAndSpecialization(Integer id, String specialization) {
+
+        List<DocterEntity> entities = Collections.emptyList();
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("docter");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findDocterByIdAndSpecialization");
+
+            query.setParameter("id", id);
+            query.setParameter("specialization", specialization);
+
+            entities = query.getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entities;
+    }
+
+    @Override
+    public List<DocterEntity> getAllDoctersByHospitalNameAndSpecialization(String hospitalName, String specialization) {
+
+        List<DocterEntity> entities = Collections.emptyList();
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("docter");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findDocterByHospitalNameAndSpecialization");
+
+            query.setParameter("hospitalName", hospitalName);
+
+            query.setParameter("specialization", specialization);
+
+            entities = query.getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entities;
+    }
 }
