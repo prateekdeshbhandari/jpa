@@ -170,4 +170,126 @@ public class DebitAccountDAOImpl implements DebitAccountDAO {
 
         return entities;
     }
+
+    @Override
+    public DebitAccountEntity getDebitAccountEntityByName(String name) {
+
+        DebitAccountEntity entity = null;
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("bank");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findDebitAccountByName");
+
+            query.setParameter("name", name);
+
+
+
+            Object ref = query.getSingleResult();
+
+            entity = (DebitAccountEntity) ref;
+
+            System.out.println("" + ref);
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entity;
+    }
+
+
+    @Override
+    public DebitAccountEntity getDebitAccountEntityByIdAndName(
+            int id,
+            String name) {
+
+        DebitAccountEntity entity = null;
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("bank");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findDebitAccountByIdAndName");
+
+            query.setParameter("id", id);
+            query.setParameter("name", name);
+
+
+
+            Object ref = query.getSingleResult();
+
+            entity = (DebitAccountEntity) ref;
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entity;
+    }
+
+
+    @Override
+    public List<DebitAccountEntity> getAllDebitAccountsByIdAndBankName(
+            int id,
+            String bankName) {
+
+        List<DebitAccountEntity> entities =
+                Collections.emptyList();
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("bank");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findDebitAccountByIdAndBankName");
+
+            query.setParameter("id", id);
+            query.setParameter("bankName", bankName);
+
+            entities = query.getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entities;
+    }
+
+
+    @Override
+    public List<DebitAccountEntity> getAllDebitAccountsByBalanceAndName(
+            double balance,
+            String name) {
+
+        List<DebitAccountEntity> entities =
+                Collections.emptyList();
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("bank");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findDebitAccountByBalanceAndName");
+
+            query.setParameter("balance", balance);
+            query.setParameter("name", name);
+
+            entities = query.getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entities;
+    }
 }

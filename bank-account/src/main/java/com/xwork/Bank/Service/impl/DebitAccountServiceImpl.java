@@ -137,4 +137,112 @@ public class DebitAccountServiceImpl implements DebitAccountService {
 
         return dtoList;
     }
+
+    @Override
+    public DebitAccountDTO findReadSaveByName(String name) {
+
+        DebitAccountDTO dto = null;
+
+        if (name != null) {
+
+            DebitAccountDAO dao = new DebitAccountDAOImpl();
+
+            DebitAccountEntity entity = dao.getDebitAccountEntityByName(name);
+
+            if (entity != null) {
+
+                dto = new DebitAccountDTO(
+                        entity.getId(),
+                        entity.getAccountHolderName(),
+                        entity.getBankName(),
+                        entity.getAccountNumber(),
+                        entity.getBalance()
+                );
+            }
+        }
+
+        return dto;
+    }
+
+    @Override
+    public DebitAccountDTO findReadSaveTwoParameter(int id, String name) {
+
+        DebitAccountDTO dto = null;
+
+        if (name != null) {
+
+            DebitAccountDAO dao = new DebitAccountDAOImpl();
+
+            DebitAccountEntity entity =
+                    dao.getDebitAccountEntityByIdAndName(id, name);
+
+            if (entity != null) {
+
+                dto = new DebitAccountDTO(
+                        entity.getId(),
+                        entity.getAccountHolderName(),
+                        entity.getBankName(),
+                        entity.getAccountNumber(),
+                        entity.getBalance()
+                );
+            }
+        }
+
+        return dto;
+    }
+
+    @Override
+    public List<DebitAccountDTO> findAllDebitAccountTwoParameter(
+            int id,
+            String bankName) {
+
+        List<DebitAccountDTO> dtoList = Collections.emptyList();
+
+        DebitAccountDAO dao = new DebitAccountDAOImpl();
+
+        List<DebitAccountEntity> allEntities =
+                dao.getAllDebitAccountsByIdAndBankName(id, bankName);
+
+        if (bankName != null) {
+
+            dtoList = allEntities.stream()
+                    .map(entity -> new DebitAccountDTO(
+                            entity.getId(),
+                            entity.getAccountHolderName(),
+                            entity.getBankName(),
+                            entity.getAccountNumber(),
+                            entity.getBalance()
+                    ))
+                    .collect(Collectors.toList());
+        }
+
+        return dtoList;
+    }
+
+    @Override
+    public List<DebitAccountDTO> findAllDebitAccountTwoParameters(
+            double balance,
+            String name) {
+
+        List<DebitAccountDTO> dtoList = Collections.emptyList();
+
+        DebitAccountDAO dao = new DebitAccountDAOImpl();
+
+        List<DebitAccountEntity> allEntities = dao.getAllDebitAccountsByBalanceAndName(balance, name);
+
+        if (name != null) {
+
+            dtoList = allEntities.stream()
+                    .map(entity -> new DebitAccountDTO(
+                            entity.getId(),
+                            entity.getAccountHolderName(),
+                            entity.getBankName(),
+                            entity.getAccountNumber(),
+                            entity.getBalance()
+                    ))
+                    .collect(Collectors.toList());
+        }
+
+        return dtoList;
+    }
 }

@@ -11,5 +11,12 @@ public interface DebitAccountService {
 
     DebitAccountDTO findReadSaveId(Integer id);
     List<DebitAccountDTO>readAllDebitAccounts();
+    DebitAccountDTO findReadSaveByName(String name);
+
+    DebitAccountDTO findReadSaveTwoParameter(int id, String name);
+
+    List<DebitAccountDTO> findAllDebitAccountTwoParameter(int id, String bankName);
+
+    List<DebitAccountDTO> findAllDebitAccountTwoParameters(double balance, String name);
 
 }

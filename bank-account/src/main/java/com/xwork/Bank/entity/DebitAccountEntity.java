@@ -14,9 +14,12 @@ import javax.persistence.*;
 // Select
 @NamedQuery(name = "getAllDebitAccounts", query = "select d from DebitAccountEntity d")
 @NamedQuery(name = "findDebitAccountByName", query = "select d from DebitAccountEntity d where d.name = :name")
-@NamedQuery(name = "findDebitAccountByBankName", query = "select d from DebitAccountEntity d where d.bankName = :bankName")
-@NamedQuery(name = "findDebitAccountByAccountNumber", query = "select d from DebitAccountEntity d where d.accountNumber = :accountNumber")
-@NamedQuery(name = "findDebitAccountByBalance", query = "select d from DebitAccountEntity d where d.balance = :balance")
+
+@NamedQuery(name = "findDebitAccountByIdAndName", query = "select d from DebitAccountEntity d where d.id = :id and d.name = :name")
+
+@NamedQuery(name = "findDebitAccountByIdAndBankName", query = "select d from DebitAccountEntity d where d.id = :id and d.bankName = :bankName")
+
+@NamedQuery(name = "findDebitAccountByBalanceAndName", query = "select d from DebitAccountEntity d where d.balance = :balance and d.name = :name")
 
 // Update
 @NamedQuery(name = "updateDebitAccountName", query = "update DebitAccountEntity d set d.name = :name where d.id = :id")

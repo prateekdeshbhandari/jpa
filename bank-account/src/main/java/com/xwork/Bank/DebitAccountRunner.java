@@ -25,13 +25,29 @@ public class DebitAccountRunner {
         debitAccountDTOs.add(new DebitAccountDTO(5, "Kiran", "Canara Bank", "5678901234", 35000.00));
 
         service.validateAndSaves(debitAccountDTOs);
-        DebitAccountDTO readById = service.findReadSaveId(1);
-        System.out.println("Read by ID: " + readById);
-        List<DebitAccountDTO> allAccounts = service.readAllDebitAccounts();
+//        DebitAccountDTO readById = service.findReadSaveId(1);
+//        System.out.println("Read by ID: " + readById);
+//        List<DebitAccountDTO> allAccounts = service.readAllDebitAccounts();
+//        System.out.println("All Debit Accounts:");
+//        allAccounts.forEach(a-> System.out.println(a));
 
-        System.out.println("All Debit Accounts:");
+        DebitAccountDTO accountByName = service.findReadSaveByName("Prateek");
+        System.out.println("Account By Name: " + accountByName);
 
-        allAccounts.forEach(a-> System.out.println(a));
+
+        DebitAccountDTO accountByIdAndName = service.findReadSaveTwoParameter(1, "Prateek");
+        System.out.println("Account By ID and Name: " + accountByIdAndName);
+
+
+        List<DebitAccountDTO> accountsByIdAndBank = service.findAllDebitAccountTwoParameter(1, "HDFC Bank");
+
+        accountsByIdAndBank.forEach(a -> System.out.println(a));
+
+
+        List<DebitAccountDTO> accountsByBalanceAndName = service.findAllDebitAccountTwoParameters(75000.00, "Rahul");
+
+        accountsByBalanceAndName.forEach(a -> System.out.println(a));
+
     }
 }
 

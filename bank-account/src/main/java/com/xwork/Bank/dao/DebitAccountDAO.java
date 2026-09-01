@@ -12,4 +12,13 @@ public interface DebitAccountDAO {
     DebitAccountEntity getDebitAccountEntity(Integer id);
     List<DebitAccountEntity>getAllDebitAccounts();
 
+    DebitAccountEntity getDebitAccountEntityByName(String name);
+
+    DebitAccountEntity getDebitAccountEntityByIdAndName(int id, String name);
+
+    List<DebitAccountEntity> getAllDebitAccountsByIdAndBankName(int id, String bankName);
+
+    List<DebitAccountEntity> getAllDebitAccountsByBalanceAndName(double balance, String name);
+
+
 }

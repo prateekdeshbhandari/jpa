@@ -173,7 +173,7 @@ public class LibraryDAOImpl implements LibraryDAO {
 
             query.setParameter("AuthorName", authorName);
 
-            query.setMaxResults(1);
+//
             Object ref = query.getSingleResult();
 
             entitiess = (LibraryEntity) ref;
@@ -203,7 +203,7 @@ public class LibraryDAOImpl implements LibraryDAO {
             query.setParameter("id",id);
             query.setParameter("bookName",bookName);
 
-           query.setMaxResults(1);
+
             Object ref = query.getSingleResult();
             entitiess=(LibraryEntity) ref;
 
