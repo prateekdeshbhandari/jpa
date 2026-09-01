@@ -9,4 +9,13 @@ public interface TvsDAO {
     boolean savess(List<TvsMotoresEntity> entities );
     TvsMotoresEntity getTvsMotoresEntity(Integer id);
     List<TvsMotoresEntity> getAllTvs();
+
+    TvsMotoresEntity getTvsMotorsEntityByBrand(String brand);
+
+    TvsMotoresEntity getTvsMotorsEntityByIdAndModelName(int id, String modelName);
+
+    List<TvsMotoresEntity> getAllTvsByIdAndCategory(int id, String category);
+
+    List<TvsMotoresEntity> getAllTvsByPriceAndBrand(double price, String brand);
+
 }

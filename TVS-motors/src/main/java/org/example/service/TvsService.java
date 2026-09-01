@@ -10,4 +10,12 @@ public interface TvsService {
     TvsMotorsDto findReadSaveId(Integer Id);
     List<TvsMotorsDto> readAllTvs();
 
+
+
+    TvsMotorsDto findReadSaveByBrand(String brand);
+    TvsMotorsDto findReadSaveTwoParameter(int id, String modelName);
+    List<TvsMotorsDto> findAllTvsTwoParameter(int id, String type);
+    List<TvsMotorsDto> findAllTvsTwoParameters(double price, String brand);
 }
+
+

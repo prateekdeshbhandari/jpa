@@ -34,5 +34,21 @@ System.out.println("Read by ID: " + readById);
         System.out.println("All TVS Motors:");
 
         allTvs.forEach(aa->System.out.println(aa));
+
+        TvsMotorsDto tvsByBrand = service.findReadSaveByBrand("TVS");
+        System.out.println("TVS By Brand: " + tvsByBrand);
+
+        TvsMotorsDto tvsByIdAndName = service.findReadSaveTwoParameter(1, "Apache RTR 160");
+        System.out.println("TVS By ID and Name: " + tvsByIdAndName);
+
+
+        List<TvsMotorsDto> tvsByIdAndType = service.findAllTvsTwoParameter(1, "Bike");
+        tvsByIdAndType.forEach(aa -> System.out.println(aa));
+
+
+        List<TvsMotorsDto> tvsByPriceAndBrand = service.findAllTvsTwoParameters(150000.00, "TVS");
+        tvsByPriceAndBrand.forEach(aa -> System.out.println(aa));
     }
-}
+
+    }
+

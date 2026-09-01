@@ -154,5 +154,117 @@ EntityManager em = null;
 
         return entities;
     }
+
+    @Override
+    public TvsMotoresEntity getTvsMotorsEntityByBrand(String brand) {
+
+        TvsMotoresEntity entity = null;
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("tvs");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findTvsMotorsByBrand");
+
+            query.setParameter("brand", brand);
+
+
+
+            Object ref = query.getSingleResult();
+
+            entity = (TvsMotoresEntity) ref;
+
+            System.out.println("" + ref);
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entity;
+    }
+
+
+    @Override
+    public TvsMotoresEntity getTvsMotorsEntityByIdAndModelName(int id, String modelName) {
+
+        TvsMotoresEntity entity = null;
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("tvs");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findTvsMotorsByIdAndModelName");
+
+            query.setParameter("id", id);
+            query.setParameter("modelName", modelName);
+
+
+
+            Object ref = query.getSingleResult();
+
+            entity = (TvsMotoresEntity) ref;
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entity;
+    }
+
+
+    @Override
+    public List<TvsMotoresEntity> getAllTvsByIdAndCategory(int id, String category) {
+        List<TvsMotoresEntity> entities = Collections.emptyList();
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("tvs");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery(
+                            "findTvsMotorsByIdAndCategory");
+            query.setParameter("id", id);
+            query.setParameter("category", category);
+
+            entities = query.getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entities;
+    }
+
+
+    @Override
+    public List<TvsMotoresEntity> getAllTvsByPriceAndBrand(double price, String brand) {
+        List<TvsMotoresEntity> entities = Collections.emptyList();
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("tvs");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("findTvsMotorsByPriceAndBrand");
+
+            query.setParameter("price", price);
+            query.setParameter("brand", brand);
+
+            entities = query.getResultList();
+
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+
+        return entities;
+    }
 }
 

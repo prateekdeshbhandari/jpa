@@ -141,6 +141,108 @@ public class TvsServiceImpl implements TvsService {
 
         return dtoList;
     }
+
+
+    @Override
+    public TvsMotorsDto findReadSaveByBrand(String brand) {
+
+        TvsMotorsDto dto = null;
+
+        if (brand != null) {
+
+            TvsDAO dao = new TvsDAOIMPL();
+
+            TvsMotoresEntity entity = dao.getTvsMotorsEntityByBrand(brand);
+
+            if (entity != null) {
+
+                dto = new TvsMotorsDto(
+                        entity.getId(),
+                        entity.getModelName(),
+                        entity.getBrand(),
+                        entity.getCategory(),
+                        entity.getPrice()
+                );
+            }
+        }
+
+        return dto;
+    }
+
+    @Override
+    public TvsMotorsDto findReadSaveTwoParameter(int id, String modelName) {
+
+        TvsMotorsDto dto = null;
+
+        if (modelName != null) {
+
+            TvsDAO dao = new TvsDAOIMPL();
+
+            TvsMotoresEntity entity = dao.getTvsMotorsEntityByIdAndModelName(id, modelName);
+            if (entity != null) {
+
+                dto = new TvsMotorsDto(
+                        entity.getId(),
+                        entity.getModelName(),
+                        entity.getBrand(),
+                        entity.getCategory(),
+                        entity.getPrice()
+                );
+            }
+        }
+
+        return dto;
+    }
+
+    @Override
+    public List<TvsMotorsDto> findAllTvsTwoParameter(int id, String category) {
+
+        List<TvsMotorsDto> dtoList = Collections.emptyList();
+
+        TvsDAO dao = new TvsDAOIMPL();
+
+        List<TvsMotoresEntity> allEntities = dao.getAllTvsByIdAndCategory(id, category);
+
+        if (category != null) {
+
+            dtoList = allEntities.stream()
+                    .map(entity -> new TvsMotorsDto(
+                            entity.getId(),
+                            entity.getModelName(),
+                            entity.getBrand(),
+                            entity.getCategory(),
+                            entity.getPrice()
+                    ))
+                    .collect(Collectors.toList());
+        }
+
+        return dtoList;
+    }
+
+    @Override
+    public List<TvsMotorsDto> findAllTvsTwoParameters(double price, String brand) {
+
+        List<TvsMotorsDto> dtoList = Collections.emptyList();
+
+        TvsDAO dao = new TvsDAOIMPL();
+
+        List<TvsMotoresEntity> allEntities = dao.getAllTvsByPriceAndBrand(price, brand);
+
+        if (brand != null) {
+
+            dtoList = allEntities.stream()
+                    .map(entity -> new TvsMotorsDto(
+                            entity.getId(),
+                            entity.getModelName(),
+                            entity.getBrand(),
+                            entity.getCategory(),
+                            entity.getPrice()
+                    ))
+                    .collect(Collectors.toList());
+        }
+
+        return dtoList;
+    }
 }
 
 

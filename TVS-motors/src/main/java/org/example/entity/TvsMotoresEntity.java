@@ -13,11 +13,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 // Select
 @NamedQuery(name = "getAllTvs", query = "select t from TvsMotoresEntity t")
-@NamedQuery(name = "findTvsByModelName", query = "select t from TvsMotoresEntity t where t.modelName = :modelName")
-@NamedQuery(name = "findTvsByBrand", query = "select t from TvsMotoresEntity t where t.brand = :brand")
-@NamedQuery(name = "findTvsByCategory", query = "select t from TvsMotoresEntity t where t.category = :category")
-@NamedQuery(name = "findTvsByPrice", query = "select t from TvsMotoresEntity t where t.price = :price")
+@NamedQuery(name = "findTvsMotorsByBrand", query = "select t from TvsMotoresEntity t where t.brand = :brand")
 
+@NamedQuery(name = "findTvsMotorsByIdAndModelName", query = "select t from TvsMotoresEntity t where t.id = :id and t.modelName = :modelName")
+
+@NamedQuery(name = "findTvsMotorsByIdAndCategory", query = "select t from TvsMotoresEntity t where t.id = :id and t.category = :category")
+
+@NamedQuery(name = "findTvsMotorsByPriceAndBrand", query = "select t from TvsMotoresEntity t where t.price = :price and t.brand = :brand")
 // Update
 @NamedQuery(name = "updateTvsModelName", query = "update TvsMotoresEntity t set t.modelName = :modelName where t.id = :id")
 @NamedQuery(name = "updateTvsPrice", query = "update TvsMotoresEntity t set t.price = :price where t.id = :id")
