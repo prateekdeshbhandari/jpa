@@ -223,4 +223,60 @@ public class LibraryServiceImpl implements LibraryService {
         return dtoList;
     }
 
+    @Override
+    public String updateLibraryBookNameAndAuthorName(Integer id, String bookName,String authorName) {
+        String status=null;
+
+        if(id!=null&&bookName!=null&&authorName!=null){
+
+            LibraryDAO dao=new LibraryDAOImpl();
+            Boolean isUpdate=dao.updateLibraryBookNamesAndIDAndAuthorName(id,bookName,authorName);
+            if(isUpdate){
+                status="sucssefull";
+
+            }else {
+                status=null;
+            }
+        }
+
+        return status;
+    }
+
+    @Override
+    public String updateLibraryBookName(Integer id, String bookName) {
+
+        String Status=null;
+
+        if(id!=null&&bookName!=null){
+
+            LibraryDAO dao=new LibraryDAOImpl();
+            Boolean isUpdate=dao.updateLibraryBookNameUsingID(id,bookName);
+            if(isUpdate){
+                Status="sucssefull";
+
+            }else {
+                Status=null;
+            }
+        }
+
+        return Status;
+    }
+
+    @Override
+    public String updateLibrarycategoreUsingID(Integer id, String category) {
+        String status=null;
+        if(id!=null&&category!=null) {
+            LibraryDAO dao = new LibraryDAOImpl();
+            Boolean isUpdate = dao.updateLibrarycategoreUsingID(id, category);
+            if (isUpdate) {
+                status = "sucssefull";
+
+            } else {
+                status = null;
+            }
+        }
+
+        return status;
+    }
+
 }

@@ -23,4 +23,9 @@ LibraryDTO findReadSaveTwoParametter(Integer id,String bookName);
 List<LibraryDTO>findAllLibrarytwoPrametter(Integer id,String category);
 
 List<LibraryDTO>findAllLibrarytwoPrametters(Double price,String authorName);
+
+ String  updateLibraryBookNameAndAuthorName(Integer id, String bookName,String authorName);
+ String updateLibraryBookName(Integer id, String bookName);
+
+ String updateLibrarycategoreUsingID(Integer id, String category);
 }

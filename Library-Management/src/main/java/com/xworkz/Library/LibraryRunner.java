@@ -35,8 +35,8 @@ public class LibraryRunner {
 //
 //        System.out.println("Read by ID: " + readById);
 
-//        List<LibraryDTO> allLibraryBooks = service.readAllLibraryBooks();
-//        allLibraryBooks.forEach(a-> System.out.println(a));
+        List<LibraryDTO> allLibraryBooks = service.readAllLibraryBooks();
+        allLibraryBooks.forEach(a-> System.out.println(a));
 
 
 
@@ -51,8 +51,21 @@ public class LibraryRunner {
       List<LibraryDTO>libraryDTOS=service.findAllLibrarytwoPrametter(1,"Programming");
       libraryDTOS.forEach(a-> System.out.println(a));
 
-      List<LibraryDTO>libraryDTOss=service.findAllLibrarytwoPrametters( 700.00,"John Smith");
-      libraryDTOss.forEach(a-> System.out.println(a));
+//      List<LibraryDTO>libraryDTOss=service.findAllLibrarytwoPrametters( 700.00,"John Smith");
+//      libraryDTOss.forEach(a-> System.out.println(a));
+
+
+      String status = service.updateLibraryBookNameAndAuthorName(1,"DSA", "Prateek");
+      System.out.println("Updated library DTO: " + status);
+
+      String status1 = service.updateLibraryBookName(2,"Python Basics");
+      System.out.println("Updated library DTO: " + status1);
+
+      String status2 = service.updateLibrarycategoreUsingID(4,"IT");
+      System.out.println("Updated library DTO: " + status2);
+        System.out.println("=================================");
+//
+//        System.out.println(allLibraryBooks);
     }
 
 }

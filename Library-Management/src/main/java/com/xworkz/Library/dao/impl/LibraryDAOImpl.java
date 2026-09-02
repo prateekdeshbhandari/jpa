@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LibraryDAOImpl implements LibraryDAO {
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("library");
     @Override
     public boolean save(LibraryEntity entity) {
 
@@ -15,12 +16,11 @@ public class LibraryDAOImpl implements LibraryDAO {
 
         boolean isSaved = false;
 
-        EntityManagerFactory emf = null;
         EntityManager em = null;
         EntityTransaction et = null;
 
         try {
-            emf = Persistence.createEntityManagerFactory("library");
+
             em = emf.createEntityManager();
 
             et = em.getTransaction();
@@ -49,9 +49,7 @@ public class LibraryDAOImpl implements LibraryDAO {
                 em.close();
             }
 
-            if (emf != null) {
-                emf.close();
-            }
+
         }
 
         return isSaved;
@@ -62,12 +60,12 @@ public class LibraryDAOImpl implements LibraryDAO {
 
         boolean isSaved = false;
 
-        EntityManagerFactory emf = null;
+
         EntityManager em = null;
         EntityTransaction et = null;
 
         try {
-            emf = Persistence.createEntityManagerFactory("library");
+
             em = emf.createEntityManager();
 
             et = em.getTransaction();
@@ -98,9 +96,7 @@ public class LibraryDAOImpl implements LibraryDAO {
                 em.close();
             }
 
-            if (emf != null) {
-                emf.close();
-            }
+
         }
 
         return isSaved;
@@ -111,11 +107,11 @@ public class LibraryDAOImpl implements LibraryDAO {
 
         LibraryEntity entity = null;
 
-        EntityManagerFactory emf = null;
+
         EntityManager em = null;
 
         try {
-            emf = Persistence.createEntityManagerFactory("library");
+
             em = emf.createEntityManager();
 
             entity = em.find(LibraryEntity.class, id);
@@ -130,9 +126,7 @@ public class LibraryDAOImpl implements LibraryDAO {
                 em.close();
             }
 
-            if (emf != null) {
-                emf.close();
-            }
+
         }
 
         return entity;
@@ -141,11 +135,11 @@ public class LibraryDAOImpl implements LibraryDAO {
     @Override
     public List<LibraryEntity> getAllLibraryBooks() {
         List<LibraryEntity>entities= Collections.emptyList();
-        EntityManagerFactory emf = null;
+
         EntityManager em = null;
 
         try {
-            emf = Persistence.createEntityManagerFactory("library");
+
             em = emf.createEntityManager();
             Query query = em.createNamedQuery("getAllLibraryBooks");
 
@@ -163,11 +157,11 @@ public class LibraryDAOImpl implements LibraryDAO {
     @Override
     public LibraryEntity getLibraryEntitys(String authorName) {
         LibraryEntity entitiess= null;
-        EntityManagerFactory emf = null;
+
         EntityManager em = null;
 
         try {
-            emf = Persistence.createEntityManagerFactory("library");
+
             em = emf.createEntityManager();
             Query query = em.createNamedQuery("getAllLibraryBookss");
 
@@ -266,5 +260,140 @@ public class LibraryDAOImpl implements LibraryDAO {
         return entities;
     }
 
+    @Override
+    public Boolean updateLibraryBookNamesAndIDAndAuthorName(Integer id, String bookName, String authorName) {
+        Boolean isUpdated = false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+          Query query = em.createQuery("UPDATE LibraryEntity l SET l.bookName = :bookName, l.authorName = :authorName WHERE l.id = :id");
+          query.setParameter("id", id);
+          query.setParameter("bookName", bookName);
+          query.setParameter("authorName", authorName);
+          int result = query.executeUpdate();
+          if (result > 0) {
+              isUpdated = true;
+          }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+
+        }
+
+        return isUpdated;
+    }
+
+    @Override
+    public boolean updateLibraryBookNameUsingID(Integer id, String bookName) {
+boolean isUpdated=false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createQuery("UPDATE LibraryEntity l SET l.bookName = :bookName WHERE l.id = :id");
+            query.setParameter("id", id);
+            query.setParameter("bookName", bookName);
+
+            int result = query.executeUpdate();
+            if (result > 0) {
+                isUpdated = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+
+        }
+
+        return isUpdated;
+    }
+
+    @Override
+    public boolean updateLibrarycategoreUsingID(Integer id, String category) {
+
+        boolean isUpdated=false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createQuery("UPDATE LibraryEntity l SET l.category = : category WHERE l.id = :id");
+            query.setParameter("id", id);
+            query.setParameter("category",category);
+
+            int result = query.executeUpdate();
+            if (result > 0) {
+                isUpdated = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+
+        }
+
+        return isUpdated;
+    }
 
 }

@@ -24,8 +24,7 @@ import javax.persistence.*;
 @NamedQuery(name = "findLibraryBookByauthorName", query = "select l from LibraryEntity l where l.price = :price and l.authorName = :authorName"
 )
 // Update
-@NamedQuery(name = "updateLibraryBookName", query = "update LibraryEntity l set l.bookName = :bookName where l.id = :id")
-@NamedQuery(name = "updateLibraryBookPrice", query = "update LibraryEntity l set l.price = :price where l.id = :id")
+
 
 // Delete
 @NamedQuery(name = "deleteLibraryBook", query = "delete from LibraryEntity l where l.id = :id")

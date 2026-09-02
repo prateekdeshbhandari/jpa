@@ -22,5 +22,9 @@ public interface LibraryDAO {
     List<LibraryEntity> getAllLibraryBooksss(Integer id,String category);
 
     List<LibraryEntity>getAllLibraryBookssss(Double price,String authorName);
+
+    Boolean updateLibraryBookNamesAndIDAndAuthorName(Integer id, String bookName,String authorName);
+    boolean updateLibraryBookNameUsingID(Integer id,String bookName);
+    boolean updateLibrarycategoreUsingID(Integer id,String category);
 }
 
