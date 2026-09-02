@@ -251,4 +251,66 @@ public class MobileStoreServiceImpl implements MobileStoreService {
 
         return dtoList;
     }
+
+    @Override
+    public String updateMobileNameAndBrand(int id, String mobileName, String brand) {
+
+        String status = null;
+
+        if (id > 0 && mobileName != null && brand != null) {
+
+            MobileStoreDAO dao = new MobileStoreDAOImpl();
+
+            Boolean isUpdate = dao.updateMobileNameAndBrand(id, mobileName, brand);
+            if (isUpdate) {
+                status = "successful";
+            } else {
+                status = null;
+            }
+        }
+
+        return status;
+    }
+
+    @Override
+    public String updateMobileName(int id, String mobileName) {
+
+        String status = null;
+
+        if (id > 0 && mobileName != null) {
+
+            MobileStoreDAO dao = new MobileStoreDAOImpl();
+
+            Boolean isUpdate = dao.updateMobileNameUsingID(id, mobileName);
+
+            if (isUpdate) {
+                status = "successful";
+            } else {
+                status = null;
+            }
+        }
+
+        return status;
+    }
+
+    @Override
+    public String updateMobileColorUsingID(int id, String color) {
+
+        String status = null;
+
+        if (id > 0 && color != null) {
+
+            MobileStoreDAO dao = new MobileStoreDAOImpl();
+
+            Boolean isUpdate = dao.updateMobileColorUsingID(id, color);
+
+            if (isUpdate) {
+                status = "successful";
+            } else {
+                status = null;
+            }
+        }
+
+        return status;
+    }
 }

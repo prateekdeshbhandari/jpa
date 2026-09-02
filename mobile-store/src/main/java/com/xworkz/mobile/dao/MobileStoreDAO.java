@@ -22,6 +22,11 @@ public interface MobileStoreDAO {
     List<MobileStoreEntity> getAllMobileStoresByIdAndColor(int id, String color);
 
     List<MobileStoreEntity> getAllMobileStoresByPriceAndBrand(double price, String brand);
+
+    //update
+    Boolean updateMobileNameAndBrand(int id, String mobileName, String brand);
+    Boolean updateMobileNameUsingID(int id, String mobileName);
+    Boolean updateMobileColorUsingID(int id, String color);
 }
 
 

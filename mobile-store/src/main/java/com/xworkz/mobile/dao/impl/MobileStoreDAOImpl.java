@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class MobileStoreDAOImpl implements MobileStoreDAO {
-
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("library");
     @Override
     public boolean save(MobileStoreEntity entity) {
 
@@ -288,5 +288,143 @@ public class MobileStoreDAOImpl implements MobileStoreDAO {
         }
 
         return entities;
+    }
+
+    @Override
+    public Boolean updateMobileNameAndBrand(int id, String mobileName, String brand) {
+
+        Boolean isUpdated = false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createQuery("UPDATE MobileStoreEntity m " + "SET m.mobileName = :mobileName, m.brand = :brand " + "WHERE m.id = :id");
+
+            query.setParameter("id", id);
+            query.setParameter("mobileName", mobileName);
+            query.setParameter("brand", brand);
+
+            int result = query.executeUpdate();
+
+            if (result > 0) {
+                isUpdated = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return isUpdated;
+    }
+
+    @Override
+    public Boolean updateMobileNameUsingID(int id, String mobileName) {
+
+        Boolean isUpdated = false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createQuery("UPDATE MobileStoreEntity m " + "SET m.mobileName = :mobileName " + "WHERE m.id = :id");
+            query.setParameter("id", id);
+            query.setParameter("mobileName", mobileName);
+
+            int result = query.executeUpdate();
+
+            if (result > 0) {
+                isUpdated = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return isUpdated;
+    }
+
+    @Override
+    public Boolean updateMobileColorUsingID(int id, String color) {
+
+        Boolean isUpdated = false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createQuery("UPDATE MobileStoreEntity m " + "SET m.color = :color " + "WHERE m.id = :id");
+
+            query.setParameter("id", id);
+            query.setParameter("color", color);
+
+            int result = query.executeUpdate();
+
+            if (result > 0) {
+                isUpdated = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return isUpdated;
     }
 }

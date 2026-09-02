@@ -18,6 +18,11 @@ public interface MobileStoreService {
     List<MobileStoreDTO> findAllMobileStoreTwoParameter(int id, String color);
 
     List<MobileStoreDTO> findAllMobileStoreTwoParameters(double price, String brand);
+
+    //update
+    String updateMobileNameAndBrand(int id, String mobileName, String brand);
+    String updateMobileName(int id, String mobileName);
+    String updateMobileColorUsingID(int id, String color);
 }
 
 
