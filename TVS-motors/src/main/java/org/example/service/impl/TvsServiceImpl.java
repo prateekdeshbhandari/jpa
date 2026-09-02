@@ -243,6 +243,74 @@ public class TvsServiceImpl implements TvsService {
 
         return dtoList;
     }
+
+    @Override
+    public String updateTvsNameAndBrand(Integer id, String name, String brand) {
+
+        String status = null;
+
+        if (id != null && name != null && brand != null) {
+
+            TvsDAO dao = new TvsDAOIMPL();
+
+            Boolean isUpdate =
+                    dao.updateTvsNameAndBrand(id, name, brand);
+
+            if (isUpdate) {
+                status = "successful";
+            } else {
+                status = null;
+            }
+        }
+
+        return status;
+    }
+
+
+    @Override
+    public String updateTvsName(Integer id, String name) {
+
+        String status = null;
+
+        if (id != null && name != null) {
+
+            TvsDAO dao = new TvsDAOIMPL();
+
+            Boolean isUpdate =
+                    dao.updateTvsNameUsingID(id, name);
+
+            if (isUpdate) {
+                status = "successful";
+            } else {
+                status = null;
+            }
+        }
+
+        return status;
+    }
+
+
+    @Override
+    public String updateTvsTypeUsingID(Integer id, String type) {
+
+        String status = null;
+
+        if (id != null && type != null) {
+
+            TvsDAO dao = new TvsDAOIMPL();
+
+            Boolean isUpdate =
+                    dao.updateTvsTypeUsingID(id, type);
+
+            if (isUpdate) {
+                status = "successful";
+            } else {
+                status = null;
+            }
+        }
+
+        return status;
+    }
 }
 
 

@@ -18,4 +18,11 @@ public interface TvsDAO {
 
     List<TvsMotoresEntity> getAllTvsByPriceAndBrand(double price, String brand);
 
+
+    // Update
+    Boolean updateTvsNameAndBrand(Integer id, String name, String brand);
+    Boolean updateTvsNameUsingID(Integer id, String name);
+    Boolean updateTvsTypeUsingID(Integer id, String type);
+
+
 }

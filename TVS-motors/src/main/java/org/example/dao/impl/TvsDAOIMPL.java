@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class TvsDAOIMPL implements TvsDAO {
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("library");
     @Override
     public boolean save(TvsMotoresEntity entity) {
         System.out.println("Running save in TvsDAOIMPL");
@@ -265,6 +266,159 @@ EntityManager em = null;
         }
 
         return entities;
+    }
+
+    @Override
+    public Boolean updateTvsNameAndBrand(Integer id, String name, String brand) {
+
+        Boolean isUpdated = false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createQuery(
+                    "UPDATE TvsMotorsEntity t " +
+                            "SET t.name = :name, t.brand = :brand " +
+                            "WHERE t.id = :id"
+            );
+
+            query.setParameter("id", id);
+            query.setParameter("name", name);
+            query.setParameter("brand", brand);
+
+            int result = query.executeUpdate();
+
+            if (result > 0) {
+                isUpdated = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return isUpdated;
+    }
+
+
+    @Override
+    public Boolean updateTvsNameUsingID(Integer id, String name) {
+
+        Boolean isUpdated = false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createQuery(
+                    "UPDATE TvsMotorsEntity t " +
+                            "SET t.name = :name " +
+                            "WHERE t.id = :id"
+            );
+
+            query.setParameter("id", id);
+            query.setParameter("name", name);
+
+            int result = query.executeUpdate();
+
+            if (result > 0) {
+                isUpdated = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return isUpdated;
+    }
+
+
+    @Override
+    public Boolean updateTvsTypeUsingID(Integer id, String type) {
+
+        Boolean isUpdated = false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createQuery(
+                    "UPDATE TvsMotorsEntity t " +
+                            "SET t.type = :type " +
+                            "WHERE t.id = :id"
+            );
+
+            query.setParameter("id", id);
+            query.setParameter("type", type);
+
+            int result = query.executeUpdate();
+
+            if (result > 0) {
+                isUpdated = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return isUpdated;
     }
 }
 
