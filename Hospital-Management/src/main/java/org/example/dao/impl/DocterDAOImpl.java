@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class DocterDAOImpl implements DocterDAO {
+
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("library");
     @Override
     public boolean save(DocterEntity entity) {
 
@@ -287,5 +289,144 @@ public class DocterDAOImpl implements DocterDAO {
         }
 
         return entities;
+    }
+
+    @Override
+    public boolean updateDocterNameAndSpecialization(Integer id, String name, String specialization) {
+
+        boolean isUpdated = false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createQuery("UPDATE DocterEntity d " + "SET d.name = :name, d.specialization = :specialization " + "WHERE d.id = :id");
+
+            query.setParameter("id", id);
+            query.setParameter("name", name);
+            query.setParameter("specialization", specialization);
+
+            int result = query.executeUpdate();
+
+            if (result > 0) {
+                isUpdated = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return isUpdated;
+    }
+
+    @Override
+    public boolean updateDocterNameUsingID(Integer id, String name) {
+
+        boolean isUpdated = false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createQuery("UPDATE DocterEntity d " + "SET d.name = :name " + "WHERE d.id = :id");
+
+            query.setParameter("id", id);
+            query.setParameter("name", name);
+
+            int result = query.executeUpdate();
+
+            if (result > 0) {
+                isUpdated = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return isUpdated;
+    }
+
+    @Override
+    public boolean updateDocterHospitalUsingID(Integer id, String hospitalName) {
+
+        boolean isUpdated = false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createQuery("UPDATE DocterEntity d " + "SET d.hospitalName = :hospitalName " + "WHERE d.id = :id");
+
+            query.setParameter("id", id);
+            query.setParameter("hospitalName", hospitalName);
+
+            int result = query.executeUpdate();
+
+            if (result > 0) {
+                isUpdated = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return isUpdated;
     }
 }

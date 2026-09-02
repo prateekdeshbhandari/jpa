@@ -33,24 +33,35 @@ public class DocterRunner {
         List<DocterDTO> allDoctors = services.readAllDocters();
 
         System.out.println("All Doctors:");
-
-        allDoctors.forEach(a-> System.out.println(a));
-
-        DocterDTO doctorByName = services.findReadSaveByName("Rahul Sharma");
-        System.out.println("Doctor By Name: " + doctorByName);
-
-
-        DocterDTO doctorByIdAndName = services.findReadSaveTwoParameter(1, "Rahul Sharma");
-        System.out.println("Doctor By ID and Name: " + doctorByIdAndName);
-
-
-        List<DocterDTO> doctorsByIdAndSpecialization = services.findAllDocterTwoParameter(1, "Cardiologist");
-        doctorsByIdAndSpecialization.forEach(a -> System.out.println(a));
+//
+//        allDoctors.forEach(a-> System.out.println(a));
+//
+//        DocterDTO doctorByName = services.findReadSaveByName("Rahul Sharma");
+//        System.out.println("Doctor By Name: " + doctorByName);
+//
+//
+//        DocterDTO doctorByIdAndName = services.findReadSaveTwoParameter(1, "Rahul Sharma");
+//        System.out.println("Doctor By ID and Name: " + doctorByIdAndName);
+//
+//
+//        List<DocterDTO> doctorsByIdAndSpecialization = services.findAllDocterTwoParameter(1, "Cardiologist");
+//        doctorsByIdAndSpecialization.forEach(a -> System.out.println(a));
 
 
         List<DocterDTO> doctorsByHospitalAndSpecialization = services.findAllDocterTwoParameters("Apollo Hospital", "Cardiologist");
         doctorsByHospitalAndSpecialization.forEach(a -> System.out.println(a));
+
+
+        String status = services.updateDocterNameAndSpecialization(1, "Prateek Deshbhandari", "Neurologist");
+        System.out.println("Updated Doctor: " + status);
+
+        String status1 = services.updateDocterName(2, "Arun Kumar");
+        System.out.println("Updated Doctor Name: " + status1);
+
+        String status2 = services.updateDocterHospitalUsingID(4, "Apollo Hospital");
+        System.out.println("Updated Doctor Hospital: " + status2);
     }
+
 }
 
 

@@ -20,5 +20,13 @@ public interface DocterDAO {
     List<DocterEntity> getAllDoctersByIdAndSpecialization(Integer id, String specialization);
 
     List<DocterEntity> getAllDoctersByHospitalNameAndSpecialization(String hospitalName, String specialization);
+
+
+    //update methods
+    boolean updateDocterNameAndSpecialization(Integer id, String name, String specialization);
+
+    boolean updateDocterNameUsingID(Integer id, String name);
+
+    boolean updateDocterHospitalUsingID(Integer id, String hospitalName);
 }
 

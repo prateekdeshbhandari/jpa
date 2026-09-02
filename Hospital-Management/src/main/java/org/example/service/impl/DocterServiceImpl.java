@@ -238,4 +238,66 @@ public class DocterServiceImpl implements DocterService {
 
         return dtoList;
     }
+    @Override
+    public String updateDocterNameAndSpecialization(int id, String name, String specialization) {
+
+        String status = null;
+
+        if (id > 0 && name != null && specialization != null) {
+
+            DocterDAO dao = new DocterDAOImpl();
+
+            Boolean isUpdate = dao.updateDocterNameAndSpecialization(id, name, specialization);
+
+            if (isUpdate) {
+                status = "successful";
+            } else {
+                status = null;
+            }
+        }
+
+        return status;
+    }
+
+    @Override
+    public String updateDocterName(int id, String name) {
+
+        String status = null;
+
+        if (id > 0 && name != null) {
+
+            DocterDAO dao = new DocterDAOImpl();
+
+            Boolean isUpdate = dao.updateDocterNameUsingID(id, name);
+
+            if (isUpdate) {
+                status = "successful";
+            } else {
+                status = null;
+            }
+        }
+
+        return status;
+    }
+
+    @Override
+    public String updateDocterHospitalUsingID(int id, String hospitalName) {
+
+        String status = null;
+
+        if (id > 0 && hospitalName != null) {
+
+            DocterDAO dao = new DocterDAOImpl();
+
+            Boolean isUpdate = dao.updateDocterHospitalUsingID(id, hospitalName);
+
+            if (isUpdate) {
+                status = "successful";
+            } else {
+                status = null;
+            }
+        }
+
+        return status;
+    }
 }

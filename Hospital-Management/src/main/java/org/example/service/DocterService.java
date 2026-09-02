@@ -22,5 +22,11 @@ public interface DocterService {
 
     List<DocterDTO> findAllDocterTwoParameters(String hospitalName, String specialization);
 
+    String updateDocterNameAndSpecialization(int id, String name, String specialization);
+
+    String updateDocterName(int id, String name);
+
+    String updateDocterHospitalUsingID(int id, String hospitalName);
+
 }
 
