@@ -19,4 +19,9 @@ public interface DebitAccountService {
 
     List<DebitAccountDTO> findAllDebitAccountTwoParameters(double balance, String name);
 
+    //update methods
+    String updateDebitAccountNameAndBank(int id, String name, String bankName);
+    String updateDebitAccountName(int id, String name);
+    String updateDebitAccountBankUsingID(int id, String bankName);
+
 }

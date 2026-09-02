@@ -245,4 +245,68 @@ public class DebitAccountServiceImpl implements DebitAccountService {
 
         return dtoList;
     }
+
+    @Override
+    public String updateDebitAccountNameAndBank(int id, String name, String bankName) {
+
+        String status = null;
+
+        if (id > 0 && name != null && bankName != null) {
+
+            DebitAccountDAO dao = new DebitAccountDAOImpl();
+
+            Boolean isUpdate =
+                    dao.updateDebitAccountNameAndBank(id, name, bankName);
+
+            if (isUpdate) {
+                status = "successful";
+            } else {
+                status = null;
+            }
+        }
+
+        return status;
+    }
+
+    @Override
+    public String updateDebitAccountName(int id, String name) {
+
+        String status = null;
+
+        if (id > 0 && name != null) {
+
+            DebitAccountDAO dao = new DebitAccountDAOImpl();
+
+            Boolean isUpdate = dao.updateDebitAccountNameUsingID(id, name);
+
+            if (isUpdate) {
+                status = "successful";
+            } else {
+                status = null;
+            }
+        }
+
+        return status;
+    }
+
+    @Override
+    public String updateDebitAccountBankUsingID(int id, String bankName) {
+
+        String status = null;
+
+        if (id > 0 && bankName != null) {
+
+            DebitAccountDAO dao = new DebitAccountDAOImpl();
+
+            Boolean isUpdate = dao.updateDebitAccountBankUsingID(id, bankName);
+
+            if (isUpdate) {
+                status = "successful";
+            } else {
+                status = null;
+            }
+        }
+
+        return status;
+    }
 }

@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class DebitAccountDAOImpl implements DebitAccountDAO {
+
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("library");
     @Override
     public boolean save(DebitAccountEntity entity) {
 
@@ -187,7 +189,6 @@ public class DebitAccountDAOImpl implements DebitAccountDAO {
             query.setParameter("name", name);
 
 
-
             Object ref = query.getSingleResult();
 
             entity = (DebitAccountEntity) ref;
@@ -219,7 +220,6 @@ public class DebitAccountDAOImpl implements DebitAccountDAO {
 
             query.setParameter("id", id);
             query.setParameter("name", name);
-
 
 
             Object ref = query.getSingleResult();
@@ -291,5 +291,144 @@ public class DebitAccountDAOImpl implements DebitAccountDAO {
         }
 
         return entities;
+    }
+
+    @Override
+    public Boolean updateDebitAccountNameAndBank(int id, String name, String bankName) {
+
+        Boolean isUpdated = false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createQuery("UPDATE DebitAccountEntity d " + "SET d.name = :name, d.bankName = :bankName " + "WHERE d.id = :id");
+
+            query.setParameter("id", id);
+            query.setParameter("name", name);
+            query.setParameter("bankName", bankName);
+
+            int result = query.executeUpdate();
+
+            if (result > 0) {
+                isUpdated = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return isUpdated;
+    }
+
+    @Override
+    public Boolean updateDebitAccountNameUsingID(int id, String name) {
+
+        Boolean isUpdated = false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createQuery("UPDATE DebitAccountEntity d " + "SET d.name = :name " + "WHERE d.id = :id");
+
+            query.setParameter("id", id);
+            query.setParameter("name", name);
+
+            int result = query.executeUpdate();
+
+            if (result > 0) {
+                isUpdated = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return isUpdated;
+    }
+
+    @Override
+    public Boolean updateDebitAccountBankUsingID(int id, String bankName) {
+
+        Boolean isUpdated = false;
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        try {
+
+            em = emf.createEntityManager();
+
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createQuery("UPDATE DebitAccountEntity d " + "SET d.bankName = :bankName " + "WHERE d.id = :id");
+
+            query.setParameter("id", id);
+            query.setParameter("bankName", bankName);
+
+            int result = query.executeUpdate();
+
+            if (result > 0) {
+                isUpdated = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return isUpdated;
     }
 }

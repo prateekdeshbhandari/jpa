@@ -20,5 +20,10 @@ public interface DebitAccountDAO {
 
     List<DebitAccountEntity> getAllDebitAccountsByBalanceAndName(double balance, String name);
 
+    //update methods
+    Boolean updateDebitAccountNameAndBank(int id, String name, String bankName);
+    Boolean updateDebitAccountNameUsingID(int id, String name);
+    Boolean updateDebitAccountBankUsingID(int id, String bankName);
+
 
 }

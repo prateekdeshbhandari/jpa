@@ -32,22 +32,32 @@ public class DebitAccountRunner {
 //        allAccounts.forEach(a-> System.out.println(a));
 
         DebitAccountDTO accountByName = service.findReadSaveByName("Prateek");
-        System.out.println("Account By Name: " + accountByName);
+//        System.out.println("Account By Name: " + accountByName);
+//
+//
+//        DebitAccountDTO accountByIdAndName = service.findReadSaveTwoParameter(1, "Prateek");
+//        System.out.println("Account By ID and Name: " + accountByIdAndName);
+//
+//
+//        List<DebitAccountDTO> accountsByIdAndBank = service.findAllDebitAccountTwoParameter(1, "HDFC Bank");
+//
+//        accountsByIdAndBank.forEach(a -> System.out.println(a));
+//
+//
+//        List<DebitAccountDTO> accountsByBalanceAndName = service.findAllDebitAccountTwoParameters(75000.00, "Rahul");
+//
+//        accountsByBalanceAndName.forEach(a -> System.out.println(a));
 
+        String status = service.updateDebitAccountNameAndBank(1, "Prateek Deshbhandari", "ICICI Bank");
+        System.out.println("Updated Account: " + status);
 
-        DebitAccountDTO accountByIdAndName = service.findReadSaveTwoParameter(1, "Prateek");
-        System.out.println("Account By ID and Name: " + accountByIdAndName);
+        String status1 = service.updateDebitAccountName(2, "Rahul Kumar");
+        System.out.println("Updated Account Name: " + status1);
 
-
-        List<DebitAccountDTO> accountsByIdAndBank = service.findAllDebitAccountTwoParameter(1, "HDFC Bank");
-
-        accountsByIdAndBank.forEach(a -> System.out.println(a));
-
-
-        List<DebitAccountDTO> accountsByBalanceAndName = service.findAllDebitAccountTwoParameters(75000.00, "Rahul");
-
-        accountsByBalanceAndName.forEach(a -> System.out.println(a));
-
+        String status2 = service.updateDebitAccountBankUsingID(4, "HDFC Bank");
+        System.out.println("Updated Account Bank: " + status2);
     }
 }
+
+
 
