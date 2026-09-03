@@ -396,4 +396,36 @@ boolean isUpdated=false;
         return isUpdated;
     }
 
+    @Override
+    public List<String> getBookName() {
+        System.out.println("get name:");
+        List<String>entity=Collections.emptyList();
+
+        try {
+
+          entity=  emf.createEntityManager().createQuery("select s.bookName from LibraryEntity s").getResultList();
+
+
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+        return entity;
+    }
+
+    @Override
+    public List<Object> getAuthorNamess() {
+        System.out.println("get name:");
+        List<Object>entity=Collections.emptyList();
+
+        try {
+
+            entity=  emf.createEntityManager().createQuery("select s.authorName from LibraryEntity s").getResultList();
+
+
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+        return entity;
+    }
+
 }

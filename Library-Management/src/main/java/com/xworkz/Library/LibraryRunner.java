@@ -1,5 +1,7 @@
 package com.xworkz.Library;
 
+import com.xworkz.Library.dao.LibraryDAO;
+import com.xworkz.Library.dao.impl.LibraryDAOImpl;
 import com.xworkz.Library.dto.LibraryDTO;
 import com.xworkz.Library.service.LibraryService;
 import com.xworkz.Library.service.impl.LibraryServiceImpl;
@@ -66,6 +68,15 @@ public class LibraryRunner {
         System.out.println("=================================");
 //
 //        System.out.println(allLibraryBooks);
+
+
+      List< String> ref=  service.getName();
+        System.out.println(ref);
+
+        List <Object> ref1=service.getAuthorName();
+        System.out.println(ref1);
+
+
     }
 
 }

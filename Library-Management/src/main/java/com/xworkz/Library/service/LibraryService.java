@@ -28,4 +28,8 @@ List<LibraryDTO>findAllLibrarytwoPrametters(Double price,String authorName);
  String updateLibraryBookName(Integer id, String bookName);
 
  String updateLibrarycategoreUsingID(Integer id, String category);
+
+ List<String>getName();
+
+ List<Object>getAuthorName();
 }

@@ -26,5 +26,11 @@ public interface LibraryDAO {
     Boolean updateLibraryBookNamesAndIDAndAuthorName(Integer id, String bookName,String authorName);
     boolean updateLibraryBookNameUsingID(Integer id,String bookName);
     boolean updateLibrarycategoreUsingID(Integer id,String category);
+
+
+    List<String>getBookName();
+
+
+    List<Object>getAuthorNamess();
 }
 

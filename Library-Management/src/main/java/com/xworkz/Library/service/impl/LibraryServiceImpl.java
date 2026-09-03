@@ -279,4 +279,34 @@ public class LibraryServiceImpl implements LibraryService {
         return status;
     }
 
+    @Override
+    public List<String> getName() {
+        List<String>list=Collections.emptyList();
+
+        LibraryDAO dao = new LibraryDAOImpl();
+
+       List<String>lists= dao.getBookName();
+       if(lists!=null){
+           list=lists;
+       }
+
+
+        return list;
+    }
+
+    @Override
+    public List<Object> getAuthorName() {
+        System.out.println("Running getAuthorName in LibraryServiceImpl");
+
+        List<Object>entity=Collections.emptyList();
+        LibraryDAO dao=new LibraryDAOImpl();
+
+        List<Object>conte=dao.getAuthorNamess();
+
+        if(conte!=null){
+            entity=conte;
+        }
+        return entity;
+    }
+
 }
