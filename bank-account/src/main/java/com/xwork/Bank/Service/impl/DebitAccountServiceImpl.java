@@ -309,4 +309,32 @@ public class DebitAccountServiceImpl implements DebitAccountService {
 
         return status;
     }
+
+    @Override
+    public List<String> findAllBankNames() {
+
+        List<String>list=Collections.emptyList();
+
+        DebitAccountDAO dao=new DebitAccountDAOImpl();
+        List<String>entity=dao.getBankName();
+
+        if(entity!=null){
+            list=entity;
+        }
+        return list;
+
+    }
+
+    @Override
+    public List<Object> getAccuntHoldarName() {
+        List<Object>lists=Collections.emptyList();
+
+        DebitAccountDAO dao=new DebitAccountDAOImpl();
+        List<Object>entity=dao.getHolderName();
+
+        if(entity!=null){
+            lists=entity;
+        }
+        return lists;
+    }
 }

@@ -24,4 +24,8 @@ public interface DebitAccountService {
     String updateDebitAccountName(int id, String name);
     String updateDebitAccountBankUsingID(int id, String bankName);
 
+    List<String>findAllBankNames();
+
+    List<Object> getAccuntHoldarName();
+
 }

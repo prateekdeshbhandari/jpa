@@ -25,5 +25,8 @@ public interface DebitAccountDAO {
     Boolean updateDebitAccountNameUsingID(int id, String name);
     Boolean updateDebitAccountBankUsingID(int id, String bankName);
 
+    List<String> getBankName();
+    List<Object> getHolderName();
+
 
 }

@@ -431,4 +431,32 @@ public class DebitAccountDAOImpl implements DebitAccountDAO {
 
         return isUpdated;
     }
+
+    @Override
+    public List<String> getBankName() {
+        List<String>listname=Collections.emptyList();
+        try {
+            {
+                listname  =emf.createEntityManager().createQuery("select r.bankName from DebitAccountEntity r").getResultList();
+            }
+
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+        return listname;
+    }
+
+    @Override
+    public List<Object> getHolderName() {
+        List<Object>listname=Collections.emptyList();
+        try {
+            {
+                listname  =emf.createEntityManager().createQuery("select r.accountHoldarName from DebitAccountEntity r").getResultList();
+            }
+
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+        return listname;
+    }
 }

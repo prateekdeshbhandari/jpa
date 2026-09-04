@@ -56,6 +56,14 @@ public class DebitAccountRunner {
 
         String status2 = service.updateDebitAccountBankUsingID(4, "HDFC Bank");
         System.out.println("Updated Account Bank: " + status2);
+
+        List<String> bankNames = service.findAllBankNames();
+        System.out.println("All Bank Names:"+bankNames);
+
+        List<Object>ref=service.getAccuntHoldarName();
+        System.out.println("account holdar name "+ref);
+
+
     }
 }
 
