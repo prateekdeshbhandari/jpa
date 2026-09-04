@@ -427,4 +427,32 @@ public class MobileStoreDAOImpl implements MobileStoreDAO {
 
         return isUpdated;
     }
+
+    @Override
+    public List<String> getMobileName() {
+        List<String>listname=Collections.emptyList();
+        try {
+            {
+                listname  =emf.createEntityManager().createQuery("select r.mobileStoreName from MobileStoreEntity r").getResultList();
+            }
+
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+        return listname;
+    }
+
+    @Override
+    public List<Object> getBrand() {
+        List<Object>listname=Collections.emptyList();
+        try {
+            {
+                listname  =emf.createEntityManager().createQuery("select r.brand from MobileStoreEntity r").getResultList();
+            }
+
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+        return listname;
+    }
 }

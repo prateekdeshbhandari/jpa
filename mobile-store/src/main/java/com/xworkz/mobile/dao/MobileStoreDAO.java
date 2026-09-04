@@ -27,6 +27,9 @@ public interface MobileStoreDAO {
     Boolean updateMobileNameAndBrand(int id, String mobileName, String brand);
     Boolean updateMobileNameUsingID(int id, String mobileName);
     Boolean updateMobileColorUsingID(int id, String color);
+
+    List<String> getMobileName();
+    List<Object> getBrand();
 }
 
 

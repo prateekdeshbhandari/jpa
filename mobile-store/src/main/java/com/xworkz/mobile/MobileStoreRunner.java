@@ -59,5 +59,12 @@ public class MobileStoreRunner {
         String status2 = service.updateMobileColorUsingID(4, "Black");
         System.out.println("Updated Mobile Color: " + status2);
 
+
+        List<String>ref=service.findAllMobileStore();
+        System.out.println("all mobikle:"+ref);
+
+        List<Object>rte=service.getyAllBrand();
+        System.out.println("all brand:"+rte);
+
     }
 }

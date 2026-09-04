@@ -313,4 +313,30 @@ public class MobileStoreServiceImpl implements MobileStoreService {
 
         return status;
     }
+
+    @Override
+    public List<String> findAllMobileStore() {
+        List<String>list=Collections.emptyList();
+
+        MobileStoreDAO dao=new MobileStoreDAOImpl();
+        List<String>entity=dao.getMobileName();
+
+        if(entity!=null){
+            list=entity;
+        }
+        return list;
+    }
+
+    @Override
+    public List<Object> getyAllBrand() {
+        List<Object>lists=Collections.emptyList();
+
+        MobileStoreDAO dao=new MobileStoreDAOImpl();
+        List<Object>entity=dao.getBrand();
+
+        if(entity!=null){
+            lists=entity;
+        }
+        return lists;
+    }
 }

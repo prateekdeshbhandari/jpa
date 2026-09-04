@@ -23,6 +23,11 @@ public interface MobileStoreService {
     String updateMobileNameAndBrand(int id, String mobileName, String brand);
     String updateMobileName(int id, String mobileName);
     String updateMobileColorUsingID(int id, String color);
+
+
+
+    List<String> findAllMobileStore();
+    List<Object> getyAllBrand();
 }
 
 
