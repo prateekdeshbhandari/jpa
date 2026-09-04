@@ -24,5 +24,8 @@ public interface TvsDAO {
     Boolean updateTvsNameUsingID(Integer id, String name);
     Boolean updateTvsTypeUsingID(Integer id, String type);
 
+    List<String> getModelName();
+    List<Object> getCategory();
+
 
 }

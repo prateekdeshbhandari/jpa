@@ -311,6 +311,33 @@ public class TvsServiceImpl implements TvsService {
 
         return status;
     }
+
+    @Override
+    public List<String> getAllModelName() {
+        List<String>list=Collections.emptyList();
+
+       TvsDAO dao=new TvsDAOIMPL();
+        List<String>entity=dao.getModelName();
+
+        if(entity!=null){
+            list=entity;
+        }
+        return list;
+    }
+
+
+    @Override
+    public List<Object> getAllCategory() {
+        List<Object>lists=Collections.emptyList();
+
+        TvsDAO dao=new TvsDAOIMPL();
+        List<Object>entity=dao.getCategory();
+
+        if(entity!=null){
+            lists=entity;
+        }
+        return lists;
+    }
 }
 
 

@@ -420,5 +420,33 @@ EntityManager em = null;
 
         return isUpdated;
     }
+
+    @Override
+    public List<String> getModelName() {
+        List<String>listname=Collections.emptyList();
+        try {
+            {
+                listname  =emf.createEntityManager().createQuery("select r.modelName from TvsMotoresEntity r").getResultList();
+            }
+
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+        return listname;
+    }
+
+    @Override
+    public List<Object> getCategory() {
+        List<Object>listname=Collections.emptyList();
+        try {
+            {
+                listname  =emf.createEntityManager().createQuery("select r.category from TvsMotoresEntity r").getResultList();
+            }
+
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+        return listname;
+    }
 }
 

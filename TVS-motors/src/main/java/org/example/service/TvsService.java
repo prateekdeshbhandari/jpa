@@ -22,6 +22,13 @@ public interface TvsService {
     String updateTvsNameAndBrand(Integer id, String name, String brand);
     String updateTvsName(Integer id, String name);
     String updateTvsTypeUsingID(Integer id, String type);
+
+
+    List<String>getAllModelName();
+    List<Object>getAllCategory();
+
+
+
 }
 
 

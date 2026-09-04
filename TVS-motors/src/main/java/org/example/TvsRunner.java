@@ -58,6 +58,13 @@ System.out.println("Read by ID: " + readById);
 
         String status2 = service.updateTvsTypeUsingID(4, "IT");
         System.out.println("Updated TVS: " + status2);
+
+        List<String>ref=service.getAllModelName();
+        System.out.println("model name"+ref);
+
+
+        List<Object>ref1=service.getAllCategory();
+        System.out.println("brand and category"+ref1);
     }
 
 
