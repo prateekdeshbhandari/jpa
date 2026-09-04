@@ -28,5 +28,11 @@ public interface DocterDAO {
     boolean updateDocterNameUsingID(Integer id, String name);
 
     boolean updateDocterHospitalUsingID(Integer id, String hospitalName);
+
+
+
+    List<String>getName();
+
+    List<Object>getSpecialization();
 }
 

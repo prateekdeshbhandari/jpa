@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DocterDAOImpl implements DocterDAO {
 
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("library");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("docter");
     @Override
     public boolean save(DocterEntity entity) {
 
@@ -428,5 +428,33 @@ public class DocterDAOImpl implements DocterDAO {
         }
 
         return isUpdated;
+    }
+
+    @Override
+    public List<String> getName() {
+        List<String>listname=Collections.emptyList();
+        try {
+            {
+              listname  =emf.createEntityManager().createQuery("select r.name from DocterEntity r").getResultList();
+            }
+
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+        return listname;
+    }
+
+    @Override
+    public List<Object> getSpecialization() {
+        List<Object>listname=Collections.emptyList();
+        try {
+            {
+                listname  =emf.createEntityManager().createQuery("select r.specialization from DocterEntity r").getResultList();
+            }
+
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+        return listname;
     }
 }

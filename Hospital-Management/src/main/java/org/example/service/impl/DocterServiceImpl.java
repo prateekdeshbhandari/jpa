@@ -300,4 +300,31 @@ public class DocterServiceImpl implements DocterService {
 
         return status;
     }
+
+    @Override
+    public List<String> getAllDocterNames() {
+
+        List<String>list=Collections.emptyList();
+
+        DocterDAO dao=new DocterDAOImpl();
+        List<String>entity=dao.getName();
+
+        if(entity!=null){
+            list=entity;
+        }
+        return list;
+    }
+
+    @Override
+    public List<Object> getAllSpecialization() {
+        List<Object>lists=Collections.emptyList();
+
+        DocterDAO dao=new DocterDAOImpl();
+        List<Object>entity=dao.getSpecialization();
+
+        if(entity!=null){
+            lists=entity;
+        }
+        return lists;
+    }
 }

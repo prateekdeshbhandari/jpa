@@ -60,6 +60,13 @@ public class DocterRunner {
 
         String status2 = services.updateDocterHospitalUsingID(4, "Apollo Hospital");
         System.out.println("Updated Doctor Hospital: " + status2);
+
+
+        List<String>ref=services.getAllDocterNames();
+        System.out.println("All Docter Names: " + ref);
+
+        List<Object>refs=services.getAllSpecialization();
+        System.out.println("All Docter Names and Specialization: " + refs);
     }
 
 }

@@ -28,5 +28,9 @@ public interface DocterService {
 
     String updateDocterHospitalUsingID(int id, String hospitalName);
 
+    List<String> getAllDocterNames();
+
+    List<Object> getAllSpecialization();
+
 }
 
