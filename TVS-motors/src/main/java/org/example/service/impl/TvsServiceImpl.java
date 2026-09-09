@@ -5,10 +5,14 @@ import org.example.dao.impl.TvsDAOIMPL;
 import org.example.dto.TvsMotorsDto;
 import org.example.entity.TvsMotoresEntity;
 import org.example.service.TvsService;
+import org.example.unit.ValidationUnit;
+
+import javax.validation.ConstraintViolation;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.counting;
@@ -22,6 +26,9 @@ public class TvsServiceImpl implements TvsService {
         boolean isSeved = false;
 
         if (dto != null) {
+            Set<ConstraintViolation<TvsMotorsDto>> violations = ValidationUnit.getValidator().validate(dto);
+            System.out.println("violations" + violations);
+            if (violations.isEmpty()) {
 
             TvsMotoresEntity entity = new TvsMotoresEntity();
 
@@ -41,9 +48,20 @@ public class TvsServiceImpl implements TvsService {
                 isSeved = false;
                 System.out.println("Data is not saved ");
             }
+            }else {
+                    for(ConstraintViolation<TvsMotorsDto>violation:violations){
+                        System.out.println("message"+violation.getMessage());
+                        System.out.println("propertyPath"+violation.getPropertyPath());
 
-        }
+                    }
 
+                }
+
+
+
+            }else {
+                System.out.println("DoctorDTO is null");
+            }
         return isSeved;
 
     }
