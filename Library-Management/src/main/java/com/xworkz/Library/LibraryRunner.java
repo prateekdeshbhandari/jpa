@@ -30,51 +30,51 @@ public class LibraryRunner {
         libraryDTOs.add(new LibraryDTO(4, "Clean Code", "Robert Martin", "Software", 1200.00));
         libraryDTOs.add(new LibraryDTO(5, "Database System", "Abraham Silberschatz", "Database", 1000.00));
 
-        service.validateAndSaves(libraryDTOs);
-
-
-//        LibraryDTO readById = service.findReadSaveId(1);
+//        service.validateAndSaves(libraryDTOs);
 //
-//        System.out.println("Read by ID: " + readById);
-
-        List<LibraryDTO> allLibraryBooks = service.readAllLibraryBooks();
-        allLibraryBooks.forEach(a-> System.out.println(a));
-
-
-
-
-        LibraryDTO libraryDTO = service.findReadSaveAuthorName("Herbert Schildt");
-
-        System.out.println("Library DTO: " + libraryDTO);
-
-        LibraryDTO librardto=service.findReadSaveTwoParametter(1,"Java Complete Reference");
-        System.out.println("library dto"+librardto);
-
-      List<LibraryDTO>libraryDTOS=service.findAllLibrarytwoPrametter(1,"Programming");
-      libraryDTOS.forEach(a-> System.out.println(a));
-
-//      List<LibraryDTO>libraryDTOss=service.findAllLibrarytwoPrametters( 700.00,"John Smith");
-//      libraryDTOss.forEach(a-> System.out.println(a));
-
-
-      String status = service.updateLibraryBookNameAndAuthorName(1,"DSA", "Prateek");
-      System.out.println("Updated library DTO: " + status);
-
-      String status1 = service.updateLibraryBookName(2,"Python Basics");
-      System.out.println("Updated library DTO: " + status1);
-
-      String status2 = service.updateLibrarycategoreUsingID(4,"IT");
-      System.out.println("Updated library DTO: " + status2);
-        System.out.println("=================================");
 //
-//        System.out.println(allLibraryBooks);
-
-
-      List< String> ref=  service.getName();
-        System.out.println(ref);
-
-        List <Object> ref1=service.getAuthorName();
-        System.out.println(ref1);
+////        LibraryDTO readById = service.findReadSaveId(1);
+////
+////        System.out.println("Read by ID: " + readById);
+//
+//        List<LibraryDTO> allLibraryBooks = service.readAllLibraryBooks();
+//        allLibraryBooks.forEach(a-> System.out.println(a));
+//
+//
+//
+//
+//        LibraryDTO libraryDTO = service.findReadSaveAuthorName("Herbert Schildt");
+//
+//        System.out.println("Library DTO: " + libraryDTO);
+//
+//        LibraryDTO librardto=service.findReadSaveTwoParametter(1,"Java Complete Reference");
+//        System.out.println("library dto"+librardto);
+//
+//      List<LibraryDTO>libraryDTOS=service.findAllLibrarytwoPrametter(1,"Programming");
+//      libraryDTOS.forEach(a-> System.out.println(a));
+//
+////      List<LibraryDTO>libraryDTOss=service.findAllLibrarytwoPrametters( 700.00,"John Smith");
+////      libraryDTOss.forEach(a-> System.out.println(a));
+//
+//
+//      String status = service.updateLibraryBookNameAndAuthorName(1,"DSA", "Prateek");
+//      System.out.println("Updated library DTO: " + status);
+//
+//      String status1 = service.updateLibraryBookName(2,"Python Basics");
+//      System.out.println("Updated library DTO: " + status1);
+//
+//      String status2 = service.updateLibrarycategoreUsingID(4,"IT");
+//      System.out.println("Updated library DTO: " + status2);
+//        System.out.println("=================================");
+////
+////        System.out.println(allLibraryBooks);
+//
+//
+//      List< String> ref=  service.getName();
+//        System.out.println(ref);
+//
+//        List <Object> ref1=service.getAuthorName();
+//        System.out.println(ref1);
 
 
     }

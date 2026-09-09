@@ -5,11 +5,10 @@ import com.xworkz.Library.dao.impl.LibraryDAOImpl;
 import com.xworkz.Library.dto.LibraryDTO;
 import com.xworkz.Library.entity.LibraryEntity;
 import com.xworkz.Library.service.LibraryService;
+import com.xworkz.Library.unit.ValidationUnit;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LibraryServiceImpl implements LibraryService {
@@ -21,25 +20,42 @@ public class LibraryServiceImpl implements LibraryService {
         boolean isSaved = false;
 
         if (dto != null) {
+            Set<ConstraintViolation<LibraryDTO>> violations = ValidationUnit.getValidator().validate(dto);
+            System.out.println("violations" + violations);
+            if (violations.isEmpty()) {
 
-            LibraryEntity entity = new LibraryEntity();
+                LibraryEntity entity = new LibraryEntity();
 
-            entity.setBookName(dto.getBookName());
-            entity.setAuthorName(dto.getAuthorName());
-            entity.setCategory(dto.getCategory());
-            entity.setPrice(dto.getPrice());
+                entity.setBookName(dto.getBookName());
+                entity.setAuthorName(dto.getAuthorName());
+                entity.setCategory(dto.getCategory());
+                entity.setPrice(dto.getPrice());
 
-            LibraryDAO dao = new LibraryDAOImpl();
+                LibraryDAO dao = new LibraryDAOImpl();
 
-            boolean saved = dao.save(entity);
+                boolean saved = dao.save(entity);
 
-            if (saved) {
-                isSaved = true;
-                System.out.println("Library data saved successfully");
-            } else {
-                System.out.println("Library data is not saved");
+                if (saved) {
+                    isSaved = true;
+                    System.out.println("Library data saved successfully");
+                } else {
+                    System.out.println("Library data is not saved");
+                }
+            }else {
+                for(ConstraintViolation<LibraryDTO>violation:violations){
+                    System.out.println("message"+violation.getMessage());
+                    System.out.println("propertyPath"+violation.getPropertyPath());
+                    isSaved = false;
+                }
+
             }
+
+
+
+        }else {
+            System.out.println("DoctorDTO is null");
         }
+
 
         return isSaved;
     }
