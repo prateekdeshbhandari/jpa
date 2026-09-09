@@ -5,10 +5,13 @@ import com.xworkz.mobile.dao.impl.MobileStoreDAOImpl;
 import com.xworkz.mobile.dto.MobileStoreDTO;
 import com.xworkz.mobile.entity.MobileStoreEntity;
 import com.xworkz.mobile.service.MobileStoreService;
+import com.xworkz.mobile.uitl.ValidationUnit;
 
+import javax.validation.ConstraintViolation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MobileStoreServiceImpl implements MobileStoreService {
@@ -22,6 +25,9 @@ public class MobileStoreServiceImpl implements MobileStoreService {
             boolean isSaved = false;
 
             if (dto != null) {
+                Set<ConstraintViolation<MobileStoreDTO>> violations = ValidationUnit.getValidator().validate(dto);
+                System.out.println("violations" + violations);
+                if (violations.isEmpty()) {
 
                 MobileStoreEntity entity = new MobileStoreEntity();
 
@@ -41,10 +47,20 @@ public class MobileStoreServiceImpl implements MobileStoreService {
                     System.out.println("Mobile data is not saved");
                 }
 
-            } else {
-                System.out.println("Data is null");
-            }
+            }else {
+                    for(ConstraintViolation<MobileStoreDTO>violation:violations){
+                        System.out.println("message"+violation.getMessage());
+                        System.out.println("propertyPath"+violation.getPropertyPath());
+                        isSaved = false;
+                    }
 
+                }
+
+
+
+            }else {
+                System.out.println("DoctorDTO is null");
+            }
             return isSaved;
         }
 
