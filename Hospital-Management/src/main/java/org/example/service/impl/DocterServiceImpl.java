@@ -5,10 +5,13 @@ import org.example.dao.DocterDAO;
 import org.example.dao.impl.DocterDAOImpl;
 import org.example.dto.DocterDTO;
 import org.example.service.DocterService;
+import org.example.unit.ValidationUnit;
 
+import javax.validation.ConstraintViolation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DocterServiceImpl implements DocterService {
@@ -20,27 +23,41 @@ public class DocterServiceImpl implements DocterService {
         boolean isSaved = false;
 
         if (dto != null) {
+            Set<ConstraintViolation<DocterDTO>> violations = ValidationUnit.getValidator().validate(dto);
+            System.out.println("violations" + violations);
+            if (violations.isEmpty()) {
+                DocterEntity entity = new DocterEntity();
 
-            DocterEntity entity = new DocterEntity();
+                entity.setName(dto.getName());
+                entity.setSpecialization(dto.getSpecialization());
+                entity.setHospitalName(dto.getHospitalName());
+                entity.setPhoneNumber(dto.getPhoneNumber());
 
-            entity.setName(dto.getName());
-            entity.setSpecialization(dto.getSpecialization());
-            entity.setHospitalName(dto.getHospitalName());
-            entity.setPhoneNumber(dto.getPhoneNumber());
+                DocterDAO dao = new DocterDAOImpl();
 
-            DocterDAO dao = new DocterDAOImpl();
+                boolean saved = dao.save(entity);
 
-            boolean saved = dao.save(entity);
+                if (saved) {
+                    isSaved = true;
+                    System.out.println("Doctor data is saved successfully");
+                } else {
+                    isSaved = false;
+                    System.out.println("Doctor data is not saved");
+                }
+            }else {
+                for(ConstraintViolation<DocterDTO>violation:violations){
+                    System.out.println("message"+violation.getMessage());
+                    System.out.println("propertyPath"+violation.getPropertyPath());
+                    isSaved = false;
+                }
 
-            if (saved) {
-                isSaved = true;
-                System.out.println("Doctor data is saved successfully");
-            } else {
-                isSaved = false;
-                System.out.println("Doctor data is not saved");
             }
-        }
 
+
+
+        }else {
+            System.out.println("DoctorDTO is null");
+        }
         return isSaved;
     }
 
