@@ -5,10 +5,13 @@ import com.xwork.Bank.dao.DebitAccountDAO;
 import com.xwork.Bank.dao.impl.DebitAccountDAOImpl;
 import com.xwork.Bank.dto.DebitAccountDTO;
 import com.xwork.Bank.entity.DebitAccountEntity;
+import com.xwork.Bank.unit.ValidationUnit;
 
+import javax.validation.ConstraintViolation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DebitAccountServiceImpl implements DebitAccountService {
@@ -20,7 +23,9 @@ public class DebitAccountServiceImpl implements DebitAccountService {
         boolean isSaved = false;
 
         if (dto != null) {
-
+            Set<ConstraintViolation<DebitAccountDTO>> violations = ValidationUnit.getValidator().validate(dto);
+            System.out.println("violations" + violations);
+            if (violations.isEmpty()) {
             DebitAccountEntity entity = new DebitAccountEntity();
 
             entity.setAccountHolderName(dto.getAccountHolderName());
@@ -39,9 +44,19 @@ public class DebitAccountServiceImpl implements DebitAccountService {
                 System.out.println("Debit account data is not saved");
             }
         } else {
-            System.out.println("Data is null");
-        }
+                for(ConstraintViolation<DebitAccountDTO>violation:violations){
+                    System.out.println("message"+violation.getMessage());
+                    System.out.println("propertyPath"+violation.getPropertyPath());
+                    isSaved = false;
+                }
 
+            }
+
+
+
+        }else {
+            System.out.println("DoctorDTO is null");
+        }
         return isSaved;
     }
 
