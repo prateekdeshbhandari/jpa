@@ -325,4 +325,17 @@ public class LibraryServiceImpl implements LibraryService {
         return entity;
     }
 
+    @Override
+    public List<Object[]> getAuthorNames() {
+
+        List<Object[]>entity=Collections.emptyList();
+        LibraryDAO dao=new LibraryDAOImpl();
+        List<Object[]>conte=dao.getAuthorNames();
+
+        if(conte!=null){
+            entity=conte;
+        }
+        return entity;
+    }
+
 }

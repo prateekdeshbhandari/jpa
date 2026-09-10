@@ -7,6 +7,7 @@ import com.xworkz.Library.service.LibraryService;
 import com.xworkz.Library.service.impl.LibraryServiceImpl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LibraryRunner {
@@ -76,6 +77,11 @@ public class LibraryRunner {
 //        List <Object> ref1=service.getAuthorName();
 //        System.out.println(ref1);
 
+
+        List <Object[]> ref1=service.getAuthorNames();
+        for (Object[] row : ref1) {
+            System.out.println(Arrays.toString(row));
+        }
 
     }
 

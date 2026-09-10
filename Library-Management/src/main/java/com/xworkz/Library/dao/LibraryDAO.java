@@ -32,5 +32,6 @@ public interface LibraryDAO {
 
 
     List<Object>getAuthorNamess();
+    List<Object[]>getAuthorNames();
 }
 

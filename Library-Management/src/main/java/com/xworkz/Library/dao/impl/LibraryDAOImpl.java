@@ -4,6 +4,7 @@ import com.xworkz.Library.dao.LibraryDAO;
 import com.xworkz.Library.entity.LibraryEntity;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -420,6 +421,24 @@ boolean isUpdated=false;
         try {
 
             entity=  emf.createEntityManager().createQuery("select s.authorName from LibraryEntity s").getResultList();
+
+
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+        return entity;
+    }
+
+    @Override
+    public List<Object[]> getAuthorNames() {
+        System.out.println("get name:");
+        List<Object[]>entity=Collections.emptyList();
+        for (Object[] row : entity) {
+            System.out.println(Arrays.toString(row));
+        }
+        try {
+
+            entity=  emf.createEntityManager().createQuery("select s.authorName ,s.category from LibraryEntity s").getResultList();
 
 
         }catch (PersistenceException e){

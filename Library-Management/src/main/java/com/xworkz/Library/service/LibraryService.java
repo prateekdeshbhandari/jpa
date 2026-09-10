@@ -32,4 +32,6 @@ List<LibraryDTO>findAllLibrarytwoPrametters(Double price,String authorName);
  List<String>getName();
 
  List<Object>getAuthorName();
+
+ List<Object[]>getAuthorNames();
 }
