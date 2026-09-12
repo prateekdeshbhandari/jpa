@@ -12,7 +12,8 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class LibraryDTO {
 
-    private Integer id;
+
+    private int id;
     @NotNull(message = "Book name cannot be null")
     @Size(min = 3, max = 50, message = "Book name must be between 3 and 50 characters")
     private String bookName;
