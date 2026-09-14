@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DebitAccountDAOImpl implements DebitAccountDAO {
 
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("library");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("debit");
     @Override
     public boolean save(DebitAccountEntity entity) {
 
