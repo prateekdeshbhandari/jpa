@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class TvsDAOIMPL implements TvsDAO {
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("library");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("tvs");
     @Override
     public boolean save(TvsMotoresEntity entity) {
         System.out.println("Running save in TvsDAOIMPL");
