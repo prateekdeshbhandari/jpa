@@ -29,5 +29,6 @@
 
 </form>
 ${message}
+<a href="read.jsp">View Registered Motors</a>
 </body>
 </html>

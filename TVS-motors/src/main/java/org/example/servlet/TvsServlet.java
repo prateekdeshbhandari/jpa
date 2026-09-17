@@ -28,9 +28,14 @@ public class TvsServlet extends HttpServlet {
 
 
         if(isSaved){
-            RequestDispatcher dispatcher=req.getRequestDispatcher("Rejest.jsp");
-            req.setAttribute("message", "Motorcycle registered successfully!");
-            dispatcher.forward(req, resp);
+
+            RequestDispatcher dispatcher1=req.getRequestDispatcher("read.jsp");
+            req.setAttribute("modelName", dto.getModelName());
+            req.setAttribute("brand", dto.getBrand());
+            req.setAttribute("category", dto.getCategory());
+            req.setAttribute("price", dto.getPrice());
+            dispatcher1.forward(req, resp);
+
         }else{
            req.setAttribute("errorMessage", "Failed to register motorcycle. Please try again.");
            req.getRequestDispatcher("Rejest.jsp").forward(req, resp);
