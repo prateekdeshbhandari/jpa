@@ -1,8 +1,11 @@
+
 <html>
 <head>
-    <title>TVS Motors Registration</title>
+    <title>TVS Motors Details</title>
 </head>
+
 <body>
+
 <h2>TVS Motors Details</h2>
 
 <table border="1" cellpadding="10" cellspacing="0">
@@ -14,19 +17,23 @@
         <th>Price</th>
     </tr>
 
+
+
     <tr>
-        <td>${modelName}</td>
-        <td>${brand}</td>
-        <td>${category}</td>
-        <td>${price}</td>
+        <td>${sessionScope.modelName}</td>
+        <td>${sessionScope.brand}</td>
+        <td>${sessionScope.category}</td>
+        <td>${sessionScope.price}</td>
     </tr>
+
+
+
 
 </table>
 
 <br>
 
-<p>${message}</p>
-
 <a href="Rejest.jsp">Register Another Motorcycle</a>
+
 </body>
 </html>

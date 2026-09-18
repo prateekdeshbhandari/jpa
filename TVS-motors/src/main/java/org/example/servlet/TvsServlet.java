@@ -10,7 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 @WebServlet(urlPatterns = "/TVS",loadOnStartup = 1)
 public class TvsServlet extends HttpServlet {
     @Override
@@ -29,12 +33,31 @@ public class TvsServlet extends HttpServlet {
 
         if(isSaved){
 
-            RequestDispatcher dispatcher1=req.getRequestDispatcher("read.jsp");
-            req.setAttribute("modelName", dto.getModelName());
-            req.setAttribute("brand", dto.getBrand());
-            req.setAttribute("category", dto.getCategory());
-            req.setAttribute("price", dto.getPrice());
-            dispatcher1.forward(req, resp);
+
+            HttpSession session = req.getSession();
+
+            List<TvsMotorsDto> list = (List<TvsMotorsDto>) session.getAttribute("tvsList");
+
+            if (list == null) {
+                list = new ArrayList<>();
+            }
+
+            // Add new motorcycle
+            list.add(dto);
+
+            // Save updated list in session
+            session.setAttribute("tvsList", list);
+            session.setAttribute("modelName", dto.getModelName());
+            session.setAttribute("brand", dto.getBrand());
+            session.setAttribute("category", dto.getCategory());
+            session.setAttribute("price", dto.getPrice());
+            session.setAttribute("message",
+                    "Motorcycle registered successfully!");
+
+            resp.sendRedirect("read.jsp");
+
+
+
 
         }else{
            req.setAttribute("errorMessage", "Failed to register motorcycle. Please try again.");
