@@ -7,11 +7,10 @@ import org.example.service.impl.TvsServiceImpl;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,49 +18,102 @@ import java.util.List;
 public class TvsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        // Create DTO
         TvsMotorsDto dto = new TvsMotorsDto();
+
+        dto.setId(Integer.parseInt(req.getParameter("id")));
         dto.setModelName(req.getParameter("modelName"));
         dto.setBrand(req.getParameter("brand"));
         dto.setCategory(req.getParameter("category"));
         dto.setPrice(Double.parseDouble(req.getParameter("price")));
 
+        // Service
+        TvsService service = new TvsServiceImpl();
 
-        TvsService service=new TvsServiceImpl();
         boolean isSaved = service.validateAndSave(dto);
+
         System.out.println("Is saved: " + isSaved);
 
+        if (isSaved) {
 
-        if(isSaved){
+            // Encode values before storing in cookies
+            String modelName = URLEncoder.encode(
+                    dto.getModelName(),
+                    StandardCharsets.UTF_8
+            );
 
+            String brand = URLEncoder.encode(
+                    dto.getBrand(),
+                    StandardCharsets.UTF_8
+            );
 
-            HttpSession session = req.getSession();
+            String category = URLEncoder.encode(
+                    dto.getCategory(),
+                    StandardCharsets.UTF_8
+            );
 
-            List<TvsMotorsDto> list = (List<TvsMotorsDto>) session.getAttribute("tvsList");
+            // Create cookies
+            Cookie id = new Cookie(
+                    "id",
+                    String.valueOf(dto.getId())
+            );
 
-            if (list == null) {
-                list = new ArrayList<>();
-            }
+            Cookie modelNameCookie = new Cookie(
+                    "modelName",
+                    modelName
+            );
 
-            // Add new motorcycle
-            list.add(dto);
+            Cookie brandCookie = new Cookie(
+                    "brand",
+                    brand
+            );
 
-            // Save updated list in session
-            session.setAttribute("tvsList", list);
-            session.setAttribute("modelName", dto.getModelName());
-            session.setAttribute("brand", dto.getBrand());
-            session.setAttribute("category", dto.getCategory());
-            session.setAttribute("price", dto.getPrice());
-            session.setAttribute("message",
-                    "Motorcycle registered successfully!");
+            Cookie categoryCookie = new Cookie(
+                    "category",
+                    category
+            );
 
-            resp.sendRedirect("read.jsp");
+            Cookie price = new Cookie(
+                    "price",
+                    String.valueOf(dto.getPrice())
+            );
 
+            // Cookie age = 1 day
+            int maxAge = 60 * 60 * 24;
 
+            id.setMaxAge(maxAge);
+            modelNameCookie.setMaxAge(maxAge);
+            brandCookie.setMaxAge(maxAge);
+            categoryCookie.setMaxAge(maxAge);
+            price.setMaxAge(maxAge);
 
+            // Send cookies to browser
+            resp.addCookie(id);
+            resp.addCookie(modelNameCookie);
+            resp.addCookie(brandCookie);
+            resp.addCookie(categoryCookie);
+            resp.addCookie(price);
 
-        }else{
-           req.setAttribute("errorMessage", "Failed to register motorcycle. Please try again.");
-           req.getRequestDispatcher("Rejest.jsp").forward(req, resp);
+            // Store success message
+            req.getSession().setAttribute(
+                    "message",
+                    "Motorcycle registered successfully!"
+            );
+
+            // Redirect to read servlet
+            resp.sendRedirect("tvss");
+            req.getRequestDispatcher("Rejest.jsp")
+                    .forward(req, resp);
+        } else {
+
+            req.setAttribute(
+                    "errorMessage",
+                    "Failed to register motorcycle. Please try again."
+            );
+
+            req.getRequestDispatcher("Rejest.jsp")
+                    .forward(req, resp);
         }
     }
 }

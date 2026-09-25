@@ -11,6 +11,7 @@
 <table border="1" cellpadding="10" cellspacing="0">
 
     <tr>
+        <th>ID</th>
         <th>Model Name</th>
         <th>Brand</th>
         <th>Category</th>
@@ -20,10 +21,11 @@
 
 
     <tr>
-        <td>${sessionScope.modelName}</td>
-        <td>${sessionScope.brand}</td>
-        <td>${sessionScope.category}</td>
-        <td>${sessionScope.price}</td>
+        <td>${id}</td>
+        <td>${modelName}</td>
+        <td>${brand}</td>
+        <td>${category}</td>
+        <td>${price}</td>
     </tr>
 
 

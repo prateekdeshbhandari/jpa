@@ -9,6 +9,10 @@
 
 <form action="TVS" method="post">
 
+    <label>ID:</label>
+    <input type="number" name="id" required>
+    <br><br>
+
     <label>Model Name:</label>
     <input type="text" name="modelName" required>
     <br><br>
@@ -28,7 +32,12 @@
     <input type="submit" value="Register">
 
 </form>
+
 ${message}
+
+<br>
+
 <a href="read.jsp">View Registered Motors</a>
+
 </body>
 </html>
