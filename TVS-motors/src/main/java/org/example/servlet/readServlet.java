@@ -15,7 +15,7 @@ public class readServlet extends HttpServlet {
 
         Cookie[] cookies = req.getCookies();
 
-        String id = null;
+
         String modelName = null;
         String brand = null;
         String category = null;
@@ -25,9 +25,8 @@ public class readServlet extends HttpServlet {
 
             for (Cookie cookie : cookies) {
 
-                if ("id".equals(cookie.getName())) {
-                    id = cookie.getValue();
-                }
+
+
 
                 if ("modelName".equals(cookie.getName())) {
                     modelName = cookie.getValue();
@@ -47,7 +46,6 @@ public class readServlet extends HttpServlet {
             }
         }
 
-        req.setAttribute("id", id);
         req.setAttribute("modelName", modelName);
         req.setAttribute("brand", brand);
         req.setAttribute("category", category);

@@ -22,7 +22,7 @@ public class TvsServlet extends HttpServlet {
         // Create DTO
         TvsMotorsDto dto = new TvsMotorsDto();
 
-        dto.setId(Integer.parseInt(req.getParameter("id")));
+
         dto.setModelName(req.getParameter("modelName"));
         dto.setBrand(req.getParameter("brand"));
         dto.setCategory(req.getParameter("category"));
@@ -54,10 +54,7 @@ public class TvsServlet extends HttpServlet {
             );
 
             // Create cookies
-            Cookie id = new Cookie(
-                    "id",
-                    String.valueOf(dto.getId())
-            );
+
 
             Cookie modelNameCookie = new Cookie(
                     "modelName",
@@ -82,14 +79,14 @@ public class TvsServlet extends HttpServlet {
             // Cookie age = 1 day
             int maxAge = 60 * 60 * 24;
 
-            id.setMaxAge(maxAge);
+
             modelNameCookie.setMaxAge(maxAge);
             brandCookie.setMaxAge(maxAge);
             categoryCookie.setMaxAge(maxAge);
             price.setMaxAge(maxAge);
 
             // Send cookies to browser
-            resp.addCookie(id);
+
             resp.addCookie(modelNameCookie);
             resp.addCookie(brandCookie);
             resp.addCookie(categoryCookie);
@@ -103,8 +100,7 @@ public class TvsServlet extends HttpServlet {
 
             // Redirect to read servlet
             resp.sendRedirect("tvss");
-            req.getRequestDispatcher("Rejest.jsp")
-                    .forward(req, resp);
+
         } else {
 
             req.setAttribute(
